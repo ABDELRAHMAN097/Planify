@@ -1,17 +1,24 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .bg-shape {
+    clip-path: polygon(100% 100%, 0% 100%, 100% 58%);
+    background-color: #fff;
+    height: 300;
+  }
+
+  .bg-shape-profile-bottom {
+    clip-path: polygon(100% 4%, 0% 100%, 100% 100%);
+
+    background-color: #fff;
+    height: 300;
+  }
+  .bg-shape-profile-top {
+    clip-path: polygon(0 0, 0 96%, 100% 0);
+
+    background-color: #fff;
+    height: 300;
+  }
+}
