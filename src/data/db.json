@@ -1,0 +1,28 @@
+{
+    "projects": [
+      {
+        "id": "proj-123",
+        "name": "مشروع التسويق",
+        "description": "حملة الربع الثاني",
+        "progress": 35,
+        "team": ["user-1", "user-2"],
+        "tasks": ["task-1", "task-2"],
+        "createdAt": "2023-05-20T10:00:00Z"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task-1",
+        "projectId": "proj-123",
+        "title": "تصميم الإعلانات",
+        "status": "in-progress"
+      }
+    ],
+    "team": [
+      {
+        "id": "user-1",
+        "name": "أحمد محمد",
+        "role": "مصمم جرافيك"
+      }
+    ]
+  }

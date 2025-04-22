@@ -1,23 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import image from "../assets/image1.svg";
 import editIcon from "../assets/edit-brightness.svg";
-
-import { FaAlignJustify } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FaAlignJustify } from "react-icons/fa";
+
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [userId, setUserId] = useState("");
+
+ 
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (!userId) {
-      setUserId(localStorage.getItem("userId"));
-    }
-    if (userId) {
-      setIsLogin(true);
-    }
-  }, [userId]);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -35,7 +27,7 @@ const Navbar = () => {
             {/*nav desktop */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-5">
-                <a
+                {/* <a
                   href="#"
                   className="text-black  transition duration-300 ease-in-out hover:text-[#722ED1] px-3 py-2 rounded-md text-sm font-medium"
                 >
@@ -46,29 +38,29 @@ const Navbar = () => {
                   className="text-black  transition duration-300 ease-in-out hover:text-[#722ED1] px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Pricing
-                </a>
-                <a
-                  href="#"
-                  className="text-black  transition duration-300 ease-in-out hover:text-[#722ED1] px-3 py-2 rounded-md text-sm font-medium"
+                </a> */}
+                <Link
+                  to="/recent-activity"
+                  className="text-black transition duration-300 ease-in-out hover:text-[#722ED1] px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Contact Us
-                </a>
+                </Link>
 
-                {userId ? (
+              
                   <Link
                     to="/dashboard"
                     className="text-black  transition duration-300 ease-in-out hover:text-[#722ED1] px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Profile
                   </Link>
-                ) : (
+            
                   <Link
                     to="/login"
                     className="text-black  transition duration-300 ease-in-out hover:text-[#722ED1] px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Login
                   </Link>
-                )}
+              
 
                 <a
                   href="#"
@@ -131,21 +123,21 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    {userId ? (
+                    
                       <Link
                         to="/dashboard"
                         className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       >
                         Profile
                       </Link>
-                    ) : (
+                 
                       <Link
                         to="/login"
                         className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       >
                         Login
                       </Link>
-                    )}
+                 
                   </li>
                 </ul>
               </div>
