@@ -17,7 +17,7 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="../features/dashboard/Dashboard.jsx" className="text-gray-700 hover:text-purple-600">
+              <Link to="/dashboard" className="text-gray-700 hover:text-purple-600">
                 Dashboard
               </Link>
               <a href="#" className="text-gray-700 hover:text-purple-600">
