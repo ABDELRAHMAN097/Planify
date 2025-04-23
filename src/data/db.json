@@ -1,11 +1,53 @@
 {
-  "projects": [],
+  "projects": [
+    {
+      "name": "Planify",
+      "description": "sdvfdssd dfvfdsd sdffds",
+      "startDate": "2025-04-25",
+      "endDate": "2025-05-10",
+      "status": "planned",
+      "team": [
+        2,
+        1
+      ],
+      "tasks": [],
+      "id": 1745409946299,
+      "createdAt": "2025-04-23T12:05:46.299Z"
+    },
+    {
+      "name": "trello",
+      "description": "ddssd sdds",
+      "startDate": "2025-04-24",
+      "endDate": "2025-04-24",
+      "status": "completed",
+      "team": [
+        1,
+        2
+      ],
+      "tasks": [],
+      "id": 1745410472464,
+      "createdAt": "2025-04-23T12:14:32.464Z"
+    }
+  ],
   "tasks": [],
   "team": [
     {
-      "id": "user-1",
-      "name": "أحمد محمد",
-      "role": "مصمم جرافيك"
+      "id": 1,
+      "name": "محمد أحمد",
+      "role": "مطور ويب",
+      "email": "mohamed@example.com"
+    },
+    {
+      "id": 2,
+      "name": "فاطمة علي",
+      "role": "مصمم UI/UX",
+      "email": "fatma@example.com"
+    },
+    {
+      "id": 2,
+      "name": "abdelrahman Magdy",
+      "role": "Web Developer",
+      "email": "fatma@example.com"
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import ProgressBar from '../../components/ProgressBar';
 import SearchFilter from '../../components/SearchFilter';
 
@@ -7,40 +8,56 @@ const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadProjects();
   }, []);
 
-  const loadProjects = () => {
-    const savedProjects = JSON.parse(localStorage.getItem('projects')) || [];
-    setProjects(savedProjects);
+  const loadProjects = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/projects');
+      setProjects(response.data);
+    } catch (error) {
+      console.error('Error loading projects:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm('هل أنت متأكد من الحذف؟')) {
-      const updatedProjects = projects.filter(project => project.id !== id);
-      localStorage.setItem('projects', JSON.stringify(updatedProjects));
-      loadProjects();
+      try {
+        await axios.delete(`http://localhost:3000/projects/${id}`);
+        await loadProjects();
+      } catch (error) {
+        console.error('Error deleting project:', error);
+      }
     }
   };
 
   const calculateProgress = (tasks) => {
     if (!tasks || tasks.length === 0) return 0;
     const completed = tasks.filter(task => task.status === 'Completed').length;
-    return (completed / tasks.length) * 100;
+    return Math.round((completed / tasks.length) * 100);
   };
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesStatus = filterStatus === 'all' || 
-      (filterStatus === 'completed' && calculateProgress(project.tasks) === 100) ||
-      (filterStatus === 'in-progress' && calculateProgress(project.tasks) < 100);
-
-    return matchesSearch && matchesStatus;
+    const currentStatus = calculateProgress(project.tasks) === 100 ? 'completed' : 'in-progress';
+    
+    return matchesSearch && (filterStatus === 'all' || filterStatus === currentStatus);
   });
+
+  if (loading) {
+    return (
+      <div className="container mx-auto p-4 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -77,7 +94,12 @@ const Dashboard = () => {
             
             <p className="text-gray-600 mb-4">{project.description}</p>
             
-            <ProgressBar progress={calculateProgress(project.tasks)} />
+            <div className="mb-4">
+              <ProgressBar progress={calculateProgress(project.tasks)} />
+              <span className="text-sm text-gray-500 mt-1 block">
+                {calculateProgress(project.tasks)}% مكتمل
+              </span>
+            </div>
             
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="bg-gray-100 px-2 py-1 rounded text-sm">
@@ -85,6 +107,9 @@ const Dashboard = () => {
               </span>
               <span className="bg-gray-100 px-2 py-1 rounded text-sm">
                 الفريق: {project.team?.length || 0}
+              </span>
+              <span className="bg-gray-100 px-2 py-1 rounded text-sm">
+                البدء: {new Date(project.startDate).toLocaleDateString()}
               </span>
             </div>
 
@@ -121,7 +146,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {filteredProjects.length === 0 && (
+      {filteredProjects.length === 0 && !loading && (
         <div className="text-center py-8 text-gray-500">
           لا توجد مشاريع متاحة
         </div>
