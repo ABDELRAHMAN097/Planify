@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-14">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <FaTrello className="text-purple-600 h-8 w-8" />

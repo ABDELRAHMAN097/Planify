@@ -57,13 +57,46 @@
       "createdAt": "2025-04-23T12:52:26.782Z"
     },
     {
-      "name": "art",
-      "description": "jhg jhg jh jh jh kj hjjjjjjjjj jjjjjjjjjjjjjj kkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkkkk kkkkkkkk kkkkkkkkkkk kkkkkkkk jhg jhg jh jh jh kj hjjjjjjjjj jjjjjjjjjjjjjj kkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkkkk kkkkkkkk kkkkkkkkkkk kkkkkkkk jhg jhg jh jh jh kj hjjjjjjjjj jjjjjjjjjjjjjj kkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkkkk kkkkkkkk kkkkkkkkkkk kkkkkkkk",
+      "name": "boooody",
+      "description": "سؤ يبلاثر رثقفتغفق",
       "startDate": "2025-04-24",
-      "endDate": "2025-04-24",
+      "endDate": "2025-04-25",
       "status": "completed",
+      "team": [
+        2,
+        1
+      ],
       "tasks": [],
-      "id": 1745412746783
+      "id": 1745418589196,
+      "createdAt": "2025-04-23T14:29:49.196Z"
+    },
+    {
+      "name": "dodo",
+      "description": "dfkjhvfdl veldkjfv",
+      "startDate": "2025-04-26",
+      "endDate": "2025-04-30",
+      "status": "planned",
+      "team": [
+        1,
+        2
+      ],
+      "tasks": [],
+      "id": 1745419608470,
+      "createdAt": "2025-04-23T14:46:48.470Z"
+    },
+    {
+      "name": "social app",
+      "description": "sdcfvdfb",
+      "startDate": "2025-04-23",
+      "endDate": "2025-04-25",
+      "status": "in-progress",
+      "team": [
+        1,
+        2
+      ],
+      "tasks": [],
+      "id": 1745420546214,
+      "createdAt": "2025-04-23T15:02:26.214Z"
     }
   ],
   "tasks": [],
