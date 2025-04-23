@@ -74,7 +74,7 @@ const Dashboard = () => {
         <h1 className="text-2xl font-bold">إدارة المشاريع</h1>
         <Link
           to="/projects/new"
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-auto text-center"
+          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded w-full md:w-auto text-center"
         >
           إضافة مشروع جديد
         </Link>
