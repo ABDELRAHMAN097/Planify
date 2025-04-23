@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProgressBar from '../../components/ProgressBar';
 import SearchFilter from '../../components/SearchFilter';
 
+
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
