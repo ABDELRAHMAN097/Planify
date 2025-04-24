@@ -155,7 +155,7 @@ const Dashboard = () => {
               </div>
 
               <Link
-                to={`/projects/${project.id}/team`}
+                to="/TeamList"
                 className="text-purple-500 hover:text-purple-600 text-sm"
               >
                 إدارة الفريق

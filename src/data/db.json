@@ -10,7 +10,14 @@
         2,
         1
       ],
-      "tasks": [],
+      "tasks": [
+    { "id": 1, "title": "تصميم الصفحة الرئيسية", "status": "Completed" },
+    { "id": 2, "title": "إعداد الباك اند", "status": "In Progress" },
+    { "id": 3, "title": "إعداد الباك اند", "status": "In Progress" },
+    { "id": 4, "title": "إعداد الباك اند", "status": "In Progress" },
+    { "id": 5, "title": "إعداد الباك اند", "status": "In Progress" },
+    { "id": 6, "title": "رفع المشروع", "status": "Not Started" }
+  ],
       "id": 1745409946299,
       "createdAt": "2025-04-23T12:05:46.299Z"
     },
