@@ -15,7 +15,29 @@ const CreateProject = () => {
     tasks: [],
   });
 
-  // جلب أعضاء الفريق من السيرفر
+  const [taskInput, setTaskInput] = useState({
+    title: "",
+    status: "Not Started",
+  });
+
+  const handleTaskAdd = () => {
+    if (taskInput.title.trim() === "") return;
+
+    setFormData((prev) => ({
+      ...prev,
+      tasks: [
+        ...prev.tasks,
+        {
+          id: Date.now(),
+          title: taskInput.title,
+          status: taskInput.status,
+        },
+      ],
+    }));
+
+    setTaskInput({ title: "", status: "Not Started" });
+  };
+
   useEffect(() => {
     const fetchMembers = async () => {
       try {
@@ -64,15 +86,14 @@ const CreateProject = () => {
   return (
     <div className="max-w-3xl border-2 my-3 mx-auto p-6 bg-white rounded-xl shadow-lg">
       <h2 className="text-2xl p-1 font-bold mb-8 text-center text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-      Create a new project
+        Create a new project
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         
           <div className="col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-            Project name
+              Project name
             </label>
             <input
               type="text"
@@ -84,10 +105,9 @@ const CreateProject = () => {
             />
           </div>
 
-          {/* description */}
           <div className="col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-            Description
+              Description
             </label>
             <textarea
               name="description"
@@ -97,10 +117,9 @@ const CreateProject = () => {
             ></textarea>
           </div>
 
-          {/* Date */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-            Start date
+              Start date
             </label>
             <input
               type="date"
@@ -113,7 +132,7 @@ const CreateProject = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-            End date
+              End date
             </label>
             <input
               type="date"
@@ -125,10 +144,9 @@ const CreateProject = () => {
             />
           </div>
 
-          {/* Project status */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-            status
+              status
             </label>
             <select
               name="status"
@@ -143,10 +161,9 @@ const CreateProject = () => {
           </div>
         </div>
 
-        {/* Team */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-3">
-          Team members
+            Team members
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {members.map((member) => (
@@ -192,7 +209,52 @@ const CreateProject = () => {
           </div>
         </div>
 
-        {/* أزرار التحكم */}
+        {/* Task input */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Add Tasks
+          </label>
+          <div className="flex gap-2 mb-4">
+            <input
+              type="text"
+              value={taskInput.title}
+              onChange={(e) =>
+                setTaskInput({ ...taskInput, title: e.target.value })
+              }
+              placeholder="Task title"
+              className="flex-1 px-3 py-2 border rounded-lg"
+            />
+            <select
+              value={taskInput.status}
+              onChange={(e) =>
+                setTaskInput({ ...taskInput, status: e.target.value })
+              }
+              className="px-3 py-2 border rounded-lg"
+            >
+              <option>Not Started</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+            </select>
+            <button
+              type="button"
+              onClick={handleTaskAdd}
+              className="bg-purple-600 text-white px-4 rounded-lg"
+            >
+              Add
+            </button>
+          </div>
+
+          {formData.tasks.length > 0 && (
+            <ul className="list-disc pl-6 space-y-1">
+              {formData.tasks.map((task) => (
+                <li key={task.id}>
+                  {task.title} - <span className="italic">{task.status}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
         <div className="flex justify-end gap-4 pt-6 border-t border-gray-200">
           <button
             type="button"
@@ -203,7 +265,7 @@ const CreateProject = () => {
           </button>
           <button
             type="submit"
-            className="px-8 py-2 bg-purple-600  text-white rounded-lg hover:bg-purple-700 transition-all shadow-md hover:shadow-lg"
+            className="px-8 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all shadow-md hover:shadow-lg"
           >
             Create Project
           </button>

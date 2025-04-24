@@ -46,45 +46,91 @@
       "createdAt": "2025-04-23T12:05:46.299Z"
     },
     {
-      "name": "toto store",
-      "description": "rds rgfds erf",
-      "startDate": "2025-04-16",
+      "name": "pampers",
+      "description": "متجر الكتروني لبيع حفاضات الاطفال",
+      "startDate": "2025-04-26",
       "endDate": "2025-04-26",
       "status": "completed",
       "team": [
-        3,
-        2
+        1
       ],
-      "tasks": [],
-      "id": 1745411404373,
-      "createdAt": "2025-04-23T12:30:04.374Z"
+      "tasks": [
+        {
+          "id": 1745533583199,
+          "title": "contact section",
+          "status": "Completed"
+        },
+        {
+          "id": 1745533627566,
+          "title": "navbar&translation",
+          "status": "Completed"
+        },
+        {
+          "id": 1745533648429,
+          "title": "api rest",
+          "status": "Completed"
+        }
+      ],
+      "id": 1745533716980,
+      "createdAt": "2025-04-24T22:28:36.980Z"
     },
     {
-      "name": "social app",
-      "description": "sdcfvdfb",
-      "startDate": "2025-04-23",
-      "endDate": "2025-04-25",
+      "name": "trello",
+      "description": "Task management application",
+      "startDate": "2025-04-25",
+      "endDate": "2025-05-03",
+      "status": "completed",
+      "team": [
+        2,
+        4,
+        3,
+        1
+      ],
+      "tasks": [
+        {
+          "id": 1745537300820,
+          "title": "frontend",
+          "status": "Completed"
+        },
+        {
+          "id": 1745537312992,
+          "title": "backend",
+          "status": "Completed"
+        },
+        {
+          "id": 1745537325987,
+          "title": "ui/ux",
+          "status": "Completed"
+        }
+      ],
+      "id": 1745537329542,
+      "createdAt": "2025-04-24T23:28:49.542Z"
+    },
+    {
+      "name": "abdelrahman",
+      "description": "ءؤسس",
+      "startDate": "2025-04-19",
+      "endDate": "2025-05-09",
       "status": "in-progress",
       "team": [
+        4,
         1,
-        2
-      ],
-      "tasks": [],
-      "id": 1745420546214,
-      "createdAt": "2025-04-23T15:02:26.214Z"
-    },
-    {
-      "name": "yango play",
-      "description": "تطبيق لعرض الاعمال السينيمائيه و الدراميه بمختلف الجنسيات",
-      "startDate": "2025-04-24",
-      "endDate": "2025-05-02",
-      "status": "planned",
-      "team": [
         3
       ],
-      "tasks": [],
-      "id": 1745509446114,
-      "createdAt": "2025-04-24T15:44:06.114Z"
+      "tasks": [
+        {
+          "id": 1745538626516,
+          "title": "سءؤ",
+          "status": "In Progress"
+        },
+        {
+          "id": 1745538635259,
+          "title": "بيسيب",
+          "status": "Completed"
+        }
+      ],
+      "id": 1745538636902,
+      "createdAt": "2025-04-24T23:50:36.902Z"
     }
   ],
   "tasks": [],

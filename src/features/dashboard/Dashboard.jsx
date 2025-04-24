@@ -5,7 +5,6 @@ import ProgressBar from "../../components/ProgressBar";
 import SearchFilter from "../../components/SearchFilter";
 import { FiEdit } from "react-icons/fi";
 import { AiFillDelete } from "react-icons/ai";
-import { TbListDetails } from "react-icons/tb";
 
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -15,19 +14,38 @@ const Dashboard = () => {
 
   useEffect(() => {
     loadProjects();
-  }, []);
+  },);
 
   const loadProjects = async () => {
     try {
       const response = await axios.get("http://localhost:3000/projects");
-      setProjects(response.data);
+      const updatedProjects = [];
+  
+      for (const project of response.data) {
+        const progress = calculateProgress(project.tasks);
+  
+        if (progress === 100 && project.status !== "completed") {
+          // Update the status automatically
+          await axios.put(`http://localhost:3000/projects/${project.id}`, {
+            ...project,
+            status: "completed",
+          });
+  
+          // Add updated project to list
+          updatedProjects.push({ ...project, status: "completed" });
+        } else {
+          updatedProjects.push(project);
+        }
+      }
+  
+      setProjects(updatedProjects);
     } catch (error) {
       console.error("Error loading projects:", error);
     } finally {
       setLoading(false);
     }
   };
-
+  
   const handleDelete = async (id) => {
     if (window.confirm("هل أنت متأكد من الحذف؟")) {
       try {
@@ -120,9 +138,11 @@ const Dashboard = () => {
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
+              <Link to={`/tasks-list/${project.id}`}>
               <span className="bg-gray-100 px-2 py-1 rounded text-sm">
                 المهام: {project.tasks?.length || 0}
               </span>
+              </Link>
               <Link to={`/project/${project.id}/team`}>
                 <span className="bg-gray-100 px-2 py-1 rounded text-sm">
                   الفريق: {project.team?.length || 0}
@@ -135,13 +155,6 @@ const Dashboard = () => {
 
             <div className="mt-4 flex justify-between items-center">
               <div className="space-x-2 flex items-center justify-center gap-2">
-                <Link
-                  to={`/projects/${project.id}`}
-                  className="text-blue-500 hover:text-blue-600 text-sm"
-                >
-                  <TbListDetails className="text-xl"/>
-
-                </Link>
                 <Link
                   to={`/projects/edit/${project.id}`}
                   className="text-green-500 hover:text-green-600 text-sm"
