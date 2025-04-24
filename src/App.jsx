@@ -5,6 +5,7 @@ import Dashboard from "./features/dashboard/Dashboard.jsx";
 import CreateProject from "./features/dashboard/CreateProject.jsx";
 import TeamList from "./features/team/TeamList.jsx";
 import MemberDetails from "./features/team/MemberDetails.jsx";
+import ProjectTeam from "./features/projects/ProjectTeam.jsx";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/projects/new" element={<CreateProject />} />
         <Route path="/TeamList" element={<TeamList />} />
         <Route path="/team/:id" element={<MemberDetails />} />
+        <Route path="/project/:id/team" element={<ProjectTeam />} />
         </Routes>
     </BrowserRouter>
   );
