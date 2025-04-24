@@ -27,7 +27,7 @@ const MemberCard = ({ member }) => {
   };
 
   return (
-    <div className="relative w-64 h-auto py-5 mx-auto rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+    <div className="relative w-64 h-auto py-5 mx-auto rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl shine-effect">
       {/* الخلفية الدرامية */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-purple-800 opacity-80"></div>
       

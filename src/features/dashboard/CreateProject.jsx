@@ -50,7 +50,7 @@ const CreateProject = () => {
     try {
       await axios.post("http://localhost:3000/projects", {
         ...formData,
-        id: Date.now(), // إنشاء ID فريد
+        id: Date.now(),
         createdAt: new Date().toISOString(),
       });
       alert("تم إنشاء المشروع بنجاح!");
@@ -62,95 +62,130 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="max-w-3xl border-2 my-3 mx-auto p-6 bg-white rounded-xl shadow-lg">
+      <h2 className="text-2xl p-1 font-bold mb-8 text-center text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
         إنشاء مشروع جديد
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* اسم المشروع */}
-        <div>
-          <label className="block text-gray-700 mb-2">اسم المشروع</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-            required
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* اسم المشروع */}
+          <div className="col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              اسم المشروع
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              required
+            />
+          </div>
 
-        {/* وصف المشروع */}
-        <div>
-          <label className="block text-gray-700 mb-2">الوصف</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            className="w-full p-2 border rounded h-32 focus:ring-2 focus:ring-blue-500"
-          ></textarea>
-        </div>
+          {/* وصف المشروع */}
+          <div className="col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              الوصف
+            </label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            ></textarea>
+          </div>
 
-        {/* تواريخ المشروع */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* تواريخ المشروع */}
           <div>
-            <label className="block text-gray-700 mb-2">تاريخ البدء</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              تاريخ البدء
+            </label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               required
             />
           </div>
           <div>
-            <label className="block text-gray-700 mb-2">تاريخ الانتهاء</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              تاريخ الانتهاء
+            </label>
             <input
               type="date"
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               required
             />
           </div>
-        </div>
 
-        {/* حالة المشروع */}
-        <div>
-          <label className="block text-gray-700 mb-2">الحالة</label>
-          <select name="status" value={formData.status} onChange={handleChange}>
-            <option value="planned">مخطط</option>
-            <option value="in-progress">قيد التنفيذ</option>
-            <option value="completed">مكتمل</option>
-          </select>
+          {/* حالة المشروع */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              الحالة
+            </label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            >
+              <option value="planned">مخطط</option>
+              <option value="in-progress">قيد التنفيذ</option>
+              <option value="completed">مكتمل</option>
+            </select>
+          </div>
         </div>
 
         {/* اختيار أعضاء الفريق */}
         <div>
-          <label className="block text-gray-700 mb-2">أعضاء الفريق</label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            أعضاء الفريق
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {members.map((member) => (
               <div
                 key={member.id}
-                className={`p-2 border rounded cursor-pointer ${
+                className={`p-3 border rounded-lg cursor-pointer transition-all ${
                   formData.team.includes(member.id)
-                    ? "bg-blue-100 border-blue-500"
-                    : "hover:bg-gray-50"
+                    ? "bg-purple-100 border-purple-500"
+                    : "bg-gray-50 hover:bg-gray-100 border-gray-200"
                 }`}
                 onClick={() => handleMemberSelect(member.id)}
               >
-                <div className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={formData.team.includes(member.id)}
-                    readOnly
-                    className="accent-blue-500"
-                  />
-                  <span>{member.name}</span>
-                  <span className="text-sm text-gray-500">({member.role})</span>
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`w-5 h-5 rounded flex items-center justify-center ${
+                      formData.team.includes(member.id)
+                        ? "bg-purple-600 text-white"
+                        : "bg-white border border-gray-300"
+                    }`}
+                  >
+                    {formData.team.includes(member.id) && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-3 w-3"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-medium">{member.name}</p>
+                    <p className="text-xs text-gray-500">{member.role}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -158,17 +193,17 @@ const CreateProject = () => {
         </div>
 
         {/* أزرار التحكم */}
-        <div className="flex justify-end gap-4 mt-8">
+        <div className="flex justify-end gap-4 pt-6 border-t border-gray-200">
           <button
             type="button"
             onClick={() => navigate("/dashboard")}
-            className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded"
+            className="px-6 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
           >
             إلغاء
           </button>
           <button
             type="submit"
-            className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-8 py-2 bg-purple-600  text-white rounded-lg hover:bg-purple-700 transition-all shadow-md hover:shadow-lg"
           >
             إنشاء المشروع
           </button>

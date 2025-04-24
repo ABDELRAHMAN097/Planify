@@ -16,7 +16,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects/new" element={<CreateProject />} />
         <Route path="/TeamList" element={<TeamList />} />
-        <Route path="/team" element={<MemberDetails />} />
+        <Route path="/team/:id" element={<MemberDetails />} />
         </Routes>
     </BrowserRouter>
   );

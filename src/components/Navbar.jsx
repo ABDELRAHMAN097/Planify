@@ -21,7 +21,7 @@ const Navbar = () => {
                 Dashboard  
               </Link>
               <Link to="/TeamList" className="text-gray-700 hover:text-purple-600">
-                المقارنة
+                Team
               </Link>
               <a href="/" className="text-gray-700 hover:text-purple-600">
               <FaHome className="text-xl"/>
