@@ -76,7 +76,7 @@ const Dashboard = () => {
           to="/projects/new"
           className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded w-full md:w-auto text-center"
         >
-          إضافة مشروع جديد
+          Create a new project
         </Link>
       </div>
 
@@ -123,9 +123,11 @@ const Dashboard = () => {
               <span className="bg-gray-100 px-2 py-1 rounded text-sm">
                 المهام: {project.tasks?.length || 0}
               </span>
-              <span className="bg-gray-100 px-2 py-1 rounded text-sm">
-                الفريق: {project.team?.length || 0}
-              </span>
+              <Link to={`/project/${project.id}/team`}>
+                <span className="bg-gray-100 px-2 py-1 rounded text-sm">
+                  الفريق: {project.team?.length || 0}
+                </span>
+              </Link>
               <span className="bg-gray-100 px-2 py-1 rounded text-sm">
                 البدء: {new Date(project.startDate).toLocaleDateString()}
               </span>
@@ -148,14 +150,14 @@ const Dashboard = () => {
                 </Link>
                 <button
                   onClick={() => handleDelete(project.id)}
-                  className="text-red-500 hover:text-red-600 text-sm"
+                  className="text-slate-500 hover:text-slate-600 text-sm"
                 >
                   <AiFillDelete className="text-xl"/>
                 </button>
               </div>
 
               <Link
-                to={`/project/${project.id}/team`}
+                to={`/project/${project.id}/manage-team`} 
                 className="text-purple-500 hover:text-purple-600 text-sm"
               >
                 إدارة الفريق

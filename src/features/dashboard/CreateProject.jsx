@@ -64,15 +64,15 @@ const CreateProject = () => {
   return (
     <div className="max-w-3xl border-2 my-3 mx-auto p-6 bg-white rounded-xl shadow-lg">
       <h2 className="text-2xl p-1 font-bold mb-8 text-center text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-        إنشاء مشروع جديد
+      Create a new project
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* اسم المشروع */}
+         
           <div className="col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              اسم المشروع
+            Project name
             </label>
             <input
               type="text"
@@ -84,10 +84,10 @@ const CreateProject = () => {
             />
           </div>
 
-          {/* وصف المشروع */}
+          {/* description */}
           <div className="col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              الوصف
+            Description
             </label>
             <textarea
               name="description"
@@ -97,10 +97,10 @@ const CreateProject = () => {
             ></textarea>
           </div>
 
-          {/* تواريخ المشروع */}
+          {/* Date */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              تاريخ البدء
+            Start date
             </label>
             <input
               type="date"
@@ -113,7 +113,7 @@ const CreateProject = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              تاريخ الانتهاء
+            End date
             </label>
             <input
               type="date"
@@ -125,10 +125,10 @@ const CreateProject = () => {
             />
           </div>
 
-          {/* حالة المشروع */}
+          {/* Project status */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              الحالة
+            status
             </label>
             <select
               name="status"
@@ -136,17 +136,17 @@ const CreateProject = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             >
-              <option value="planned">مخطط</option>
-              <option value="in-progress">قيد التنفيذ</option>
-              <option value="completed">مكتمل</option>
+              <option value="planned">planned</option>
+              <option value="in-progress">in-progress</option>
+              <option value="completed">completed</option>
             </select>
           </div>
         </div>
 
-        {/* اختيار أعضاء الفريق */}
+        {/* Team */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            أعضاء الفريق
+          Team members
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {members.map((member) => (
@@ -205,7 +205,7 @@ const CreateProject = () => {
             type="submit"
             className="px-8 py-2 bg-purple-600  text-white rounded-lg hover:bg-purple-700 transition-all shadow-md hover:shadow-lg"
           >
-            إنشاء المشروع
+            Create Project
           </button>
         </div>
       </form>
