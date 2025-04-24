@@ -101,7 +101,7 @@ const Dashboard = () => {
                     ? "bg-green-100 text-green-800"
                     : project.status === "in-progress"
                     ? "bg-blue-100 text-blue-800"
-                    :  project.status === "planned" // الحالة الافتراضية لـ "planned"
+                    :  project.status === "planned" 
                 }`}
               >
                 {project.status === "completed" && "مكتمل"}

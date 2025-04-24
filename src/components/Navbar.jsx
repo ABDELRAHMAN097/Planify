@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaTrello } from "react-icons/fa";
+import { FaHome, FaTrello } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -18,13 +18,13 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/dashboard" className="text-gray-700 hover:text-purple-600">
-                Dashboard
+                Dashboard  
               </Link>
-              <a href="#" className="text-gray-700 hover:text-purple-600">
+              <Link to="/TeamList" className="text-gray-700 hover:text-purple-600">
                 المقارنة
-              </a>
-              <a href="#" className="text-gray-700 hover:text-purple-600">
-                التسعير
+              </Link>
+              <a href="/" className="text-gray-700 hover:text-purple-600">
+              <FaHome className="text-xl"/>
               </a>
               <button className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
                 بدء الاستخدام
