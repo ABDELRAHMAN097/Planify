@@ -52,7 +52,10 @@
       "endDate": "2025-04-26",
       "status": "completed",
       "team": [
-        1
+        1,
+        3,
+        4,
+        2
       ],
       "tasks": [
         {

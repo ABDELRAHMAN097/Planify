@@ -14,30 +14,30 @@ const Dashboard = () => {
 
   useEffect(() => {
     loadProjects();
-  },);
+  });
 
   const loadProjects = async () => {
     try {
       const response = await axios.get("http://localhost:3000/projects");
       const updatedProjects = [];
-  
+
       for (const project of response.data) {
         const progress = calculateProgress(project.tasks);
-  
+
         if (progress === 100 && project.status !== "completed") {
           // Update the status automatically
           await axios.put(`http://localhost:3000/projects/${project.id}`, {
             ...project,
             status: "completed",
           });
-  
+
           // Add updated project to list
           updatedProjects.push({ ...project, status: "completed" });
         } else {
           updatedProjects.push(project);
         }
       }
-  
+
       setProjects(updatedProjects);
     } catch (error) {
       console.error("Error loading projects:", error);
@@ -45,7 +45,7 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
-  
+
   const handleDelete = async (id) => {
     if (window.confirm("هل أنت متأكد من الحذف؟")) {
       try {
@@ -89,7 +89,7 @@ const Dashboard = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-        <h1 className="text-2xl font-bold">إدارة المشاريع</h1>
+        <h1 className="text-2xl font-bold">project management</h1>
         <Link
           to="/projects/new"
           className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded w-full md:w-auto text-center"
@@ -119,12 +119,12 @@ const Dashboard = () => {
                     ? "bg-green-100 text-green-800"
                     : project.status === "in-progress"
                     ? "bg-blue-100 text-blue-800"
-                    :  project.status === "planned" 
+                    : "bg-yellow-100 text-yellow-800"
                 }`}
               >
-                {project.status === "completed" && "مكتمل"}
-                {project.status === "in-progress" && "قيد التنفيذ"}
-                {project.status === "planned" && "مخطط"}
+                {project.status === "completed" && "completed"}
+                {project.status === "in-progress" && "in-progress"}
+                {project.status === "planned" && "planned"}
               </span>
             </div>
 
@@ -133,23 +133,23 @@ const Dashboard = () => {
             <div className="mb-4">
               <ProgressBar progress={calculateProgress(project.tasks)} />
               <span className="text-sm text-gray-500 mt-1 block">
-                {calculateProgress(project.tasks)}% مكتمل
+                {calculateProgress(project.tasks)}% completed
               </span>
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
               <Link to={`/tasks-list/${project.id}`}>
-              <span className="bg-gray-100 px-2 py-1 rounded text-sm">
-                المهام: {project.tasks?.length || 0}
-              </span>
+                <span className="bg-gray-100 px-2 py-1 rounded text-sm">
+                  Tasks: {project.tasks?.length || 0}
+                </span>
               </Link>
               <Link to={`/project/${project.id}/team`}>
                 <span className="bg-gray-100 px-2 py-1 rounded text-sm">
-                  الفريق: {project.team?.length || 0}
+                  Team: {project.team?.length || 0}
                 </span>
               </Link>
               <span className="bg-gray-100 px-2 py-1 rounded text-sm">
-                البدء: {new Date(project.startDate).toLocaleDateString()}
+                Start : {new Date(project.startDate).toLocaleDateString()}
               </span>
             </div>
 
@@ -159,21 +159,21 @@ const Dashboard = () => {
                   to={`/projects/edit/${project.id}`}
                   className="text-green-500 hover:text-green-600 text-sm"
                 >
-                  <FiEdit className="text-xl"/>
+                  <FiEdit className="text-xl" />
                 </Link>
                 <button
                   onClick={() => handleDelete(project.id)}
                   className="text-slate-500 hover:text-slate-600 text-sm"
                 >
-                  <AiFillDelete className="text-xl"/>
+                  <AiFillDelete className="text-xl" />
                 </button>
               </div>
 
               <Link
-                to={`/project/${project.id}/manage-team`} 
-                className="text-purple-500 hover:text-purple-600 text-sm"
+                to={`/project/${project.id}/manage-team`}
+                className="text-purple-500 hover:text-purple-600 hover:bg-slate-200 p-1 rounded-md border border-purple-500 text-sm"
               >
-                إدارة الفريق
+                Team management
               </Link>
             </div>
           </div>

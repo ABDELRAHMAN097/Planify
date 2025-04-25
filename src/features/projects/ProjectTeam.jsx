@@ -1,10 +1,10 @@
 // components/ProjectTeam.js
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // لو بتستخدم React Router
+import { useParams } from 'react-router-dom'; 
 import TeamMemberCard from '../team/MemberCard';
 
 const ProjectTeam = () => {
-  const { id } = useParams(); // لو بتستخدم Next.js، استخدم useRouter().query.id
+  const { id } = useParams(); 
   const [project, setProject] = useState(null);
   const [allMembers, setAllMembers] = useState([]);
   const [filteredMembers, setFilteredMembers] = useState([]);
@@ -12,17 +12,17 @@ const ProjectTeam = () => {
   useEffect(() => {
     const fetchProjectAndTeam = async () => {
       try {
-        // هات المشروع المحدد بالـ ID
+        
         const projectRes = await fetch(`http://localhost:3000/projects/${id}`);
         const projectData = await projectRes.json();
         setProject(projectData);
 
-        // هات كل أعضاء الفريق
+        // allMembers
         const teamRes = await fetch(`http://localhost:3000/team`);
         const teamData = await teamRes.json();
         setAllMembers(teamData);
 
-        // فلتر الأعضاء اللي ليهم علاقة بالمشروع ده
+        // Members-filter
         const teamForProject = teamData.filter(member => projectData.team.includes(member.id));
         setFilteredMembers(teamForProject);
       } catch (err) {
@@ -33,7 +33,7 @@ const ProjectTeam = () => {
     if (id) fetchProjectAndTeam();
   }, [id]);
 
-  if (!project) return <div className="text-center py-10">جاري تحميل البيانات...</div>;
+  if (!project) return <div className="w-full h-screen bg-black text-white text-center py-10">loading...</div>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-12 px-4">
