@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiUser, FiMail, FiLock, FiBriefcase, FiPlus } from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiBriefcase, FiPhone, FiPlus } from "react-icons/fi";
 
 const initialSkillsList = [
   "JavaScript",
@@ -20,7 +20,8 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    role: "مستخدم",
+    phone: "",
+    role: "",
     skills: [],
   });
   const [error, setError] = useState("");
@@ -84,6 +85,7 @@ const Signup = () => {
         name: formData.name,
         role: formData.role,
         email: formData.email,
+        phone: formData.phone, 
         skills: formData.skills,
       };
 
@@ -94,7 +96,7 @@ const Signup = () => {
       );
 
       setTimeout(() => {
-        navigate("/login");
+        navigate("/Signin");
       }, 2000);
     } catch (err) {
       setError("حدث خطأ أثناء التسجيل: " + err.message);
@@ -121,7 +123,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <motion.div
         initial="hidden"
         animate="visible"
@@ -194,6 +196,19 @@ const Signup = () => {
                 name="password"
                 placeholder="كلمة المرور"
                 value={formData.password}
+                onChange={handleChange}
+                required
+                className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+
+            <div className="relative">
+              <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                name="phone"
+                placeholder="رقم التليفون"
+                value={formData.phone}
                 onChange={handleChange}
                 required
                 className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"

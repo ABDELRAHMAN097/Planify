@@ -137,171 +137,105 @@
   "tasks": [],
   "team": [
     {
-      "id": 1,
-      "name": "محمد كرم",
-      "role": "مطور ويب",
-      "email": "mohamed@example.com",
+      "id": 1745668919679,
+      "name": "Ahmed Maher",
+      "role": "فرونت اند",
+      "email": "Ahmed@gmail.com",
+      "phone": "01147582520",
       "skills": [
-        {
-          "id": 1,
-          "name": "oooooooooo"
-        },
-        {
-          "id": 2,
-          "name": "CSS"
-        },
-        {
-          "id": 3,
-          "name": "uuuuuu"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "علي أحمد",
-      "role": " باك اند",
-      "email": "mohamed@example.com",
-      "phone": "01523671214",
-      "skills": [
-        {
-          "id": 1,
-          "name": "bootstrap"
-        },
-        {
-          "id": 2,
-          "name": "CSS"
-        },
-        {
-          "id": 3,
-          "name": "react"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "فاطمة علي",
-      "role": "UI/UX",
-      "email": "fatma@example.com",
-      "phone": "01023671277",
-      "skills": [
-        {
-          "id": 1,
-          "name": "sass"
-        },
-        {
-          "id": 2,
-          "name": "CSS"
-        },
-        {
-          "id": 3,
-          "name": "taillwind"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "name": "abdelrahman Magdy",
-      "role": "فرونت اند ",
-      "email": "fatma@example.com",
-      "phone": "01023671214",
-      "skills": [
-        {
-          "id": 1,
-          "name": "roby"
-        },
-        {
-          "id": 2,
-          "name": "jjjjj"
-        },
-        {
-          "id": 3,
-          "name": "JavaScript"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "name": "abdelrahman Magdy",
-      "role": "فرونت اند ",
-      "email": "fatma@example.com",
-      "phone": "01023671214",
-      "skills": [
-        {
-          "id": 1,
-          "name": "HTML"
-        },
-        {
-          "id": 2,
-          "name": "CSS"
-        },
-        {
-          "id": 3,
-          "name": "JavaScript"
-        }
-      ]
-    },
-    {
-      "id": 1745661330909,
-      "name": "ahmed",
-      "role": "frontend",
-      "email": "ahmed@gmail.com",
-      "skills": []
-    },
-    {
-      "id": 1745661645514,
-      "name": "dodo",
-      "role": "ui/ux",
-      "email": "dodo@gmail.com",
-      "skills": []
-    },
-    {
-      "id": 1745662034488,
-      "name": "boooody",
-      "role": "frontend",
-      "email": "boooody@gmail.com",
-      "skills": [
-        "JavaScript",
         "React",
-        "CSS",
-        "Next.js",
-        "HTML"
-      ]
-    },
-    {
-      "id": 1745662347755,
-      "name": "vivo",
-      "role": "ui/ux",
-      "email": "vivo12@gmail.com",
-      "phone": "0102588744",
-      "skills": [
-        "Node.js",
         "Next.js"
       ]
     },
     {
-      "id": 2347755,
-      "name": "vieee",
-      "role": "ui/ux",
-      "email": "vivo12@gmail.com",
-      "phone": "0102588744",
+      "id": 1745669214081,
+      "name": "Asmaa Mohamed",
+      "role": "Backend",
+      "email": "Asmaa@gmail.com",
+      "phone": "01258742020",
       "skills": [
-        "Nggg",
+        "Node.js",
+        "Next.js",
+        "React",
+        "HTML",
+        "Django"
+      ]
+    },
+    {
+      "id": 1745669278217,
+      "name": "Diaa Iprahim",
+      "role": "backend",
+      "email": "Diaa@gmail.com",
+      "phone": "01129872080",
+      "skills": [
+        "Next.js",
+        "Python",
+        "HTML",
+        "Node.js",
+        "Django"
+      ]
+    },
+    {
+      "id": 1745669892384,
+      "name": "nada",
+      "role": "uiux",
+      "email": "nada@gmail.com",
+      "phone": "01023685258",
+      "skills": [
+        "figma"
+      ]
+    },
+    {
+      "id": 1745670466616,
+      "name": "Fatma",
+      "role": "frontend",
+      "email": "Fatma@gmail.com",
+      "phone": "01022655233",
+      "skills": [
+        "Next.js",
+        "CSS",
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "id": 1745670605525,
+      "name": "dsfggd",
+      "role": "فرونت اند",
+      "email": "dfgfdg@gmail.com",
+      "phone": "010588777",
+      "skills": [
+        "CSS",
+        "Python",
         "Next.js"
       ]
     },
     {
-      "id": 1745663111262,
-      "name": "O",
-      "role": "front",
-      "email": "o@gmail.com",
+      "id": 1745670710465,
+      "name": "fofo",
+      "role": "backend",
+      "email": "dsf@gmail.com",
+      "phone": "011748596",
       "skills": [
-        "bootstrap",
+        "Django",
         "Next.js",
-        "React",
-        "JavaScript",
-        "CSS",
         "Node.js",
-        "HTML"
+        "HTML",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": 1745672282014,
+      "name": "lolo",
+      "role": "backend",
+      "email": "lolo@gmail.com",
+      "phone": "0155858585",
+      "skills": [
+        "Django",
+        "HTML",
+        "Node.js",
+        "JavaScript",
+        "Next.js"
       ]
     }
   ]
