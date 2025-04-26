@@ -1,8 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiUser, FiMail, FiLock, FiBriefcase, FiPhone, FiPlus } from "react-icons/fi";
+import {
+  FiUser,
+  FiMail,
+  FiLock,
+  FiBriefcase,
+  FiPhone,
+  FiPlus,
+} from "react-icons/fi";
+import { useFormik } from "formik";
+import { validationSchema } from "../lib/utils/validation";
 
 const initialSkillsList = [
   "JavaScript",
@@ -16,37 +25,65 @@ const initialSkillsList = [
 ];
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    role: "",
-    skills: [],
-  });
-  const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
   const [skillsList, setSkillsList] = useState(initialSkillsList);
   const [newSkill, setNewSkill] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError("");
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      phone: "",
+      role: "",
+      skills: [],
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting, setErrors }) => {
+      try {
+        const checkUser = await axios.get(
+          `http://localhost:3000/team?email=${values.email}`
+        );
+        if (checkUser.data.length > 0) {
+          setErrors({ email: "Email is already registered" });
+          setSubmitting(false);
+          return;
+        }
+
+        const userId = Date.now();
+        const newTeamMember = {
+          id: userId,
+          name: values.name,
+          role: values.role,
+          email: values.email,
+          phone: values.phone,
+          skills: values.skills,
+        };
+
+        await axios.post("http://localhost:3000/team", newTeamMember);
+
+        setSuccessMessage(
+          "Account created successfully! You are being redirected to the login page..."
+        );
+        setTimeout(() => {
+          navigate("/Signin");
+        }, 2000);
+      } catch (err) {
+        console.error(err);
+        setSubmitting(false);
+      }
+    },
+  });
 
   const handleSkillChange = (skill) => {
-    if (formData.skills.includes(skill)) {
-      setFormData({
-        ...formData,
-        skills: formData.skills.filter((s) => s !== skill),
-      });
+    if (formik.values.skills.includes(skill)) {
+      formik.setFieldValue(
+        "skills",
+        formik.values.skills.filter((s) => s !== skill)
+      );
     } else {
-      setFormData({
-        ...formData,
-        skills: [...formData.skills, skill],
-      });
+      formik.setFieldValue("skills", [...formik.values.skills, skill]);
     }
   };
 
@@ -54,53 +91,8 @@ const Signup = () => {
     const trimmedSkill = newSkill.trim();
     if (trimmedSkill && !skillsList.includes(trimmedSkill)) {
       setSkillsList([...skillsList, trimmedSkill]);
-      setFormData({
-        ...formData,
-        skills: [...formData.skills, trimmedSkill],
-      });
+      formik.setFieldValue("skills", [...formik.values.skills, trimmedSkill]);
       setNewSkill("");
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError("");
-
-    try {
-      const checkUser = await axios.get(
-        `http://localhost:3000/team?email=${formData.email}`
-      );
-
-      if (checkUser.data.length > 0) {
-        setError("البريد الإلكتروني مسجل بالفعل");
-        setIsSubmitting(false);
-        return;
-      }
-
-      const userId = Date.now();
-
-      const newTeamMember = {
-        id: userId,
-        name: formData.name,
-        role: formData.role,
-        email: formData.email,
-        phone: formData.phone, 
-        skills: formData.skills,
-      };
-
-      await axios.post("http://localhost:3000/team", newTeamMember);
-
-      setSuccessMessage(
-        "تم إنشاء الحساب بنجاح! يتم تحويلك إلى صفحة تسجيل الدخول..."
-      );
-
-      setTimeout(() => {
-        navigate("/Signin");
-      }, 2000);
-    } catch (err) {
-      setError("حدث خطأ أثناء التسجيل: " + err.message);
-      setIsSubmitting(false);
     }
   };
 
@@ -109,11 +101,7 @@ const Signup = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        delay: 0.2,
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
+      transition: { delay: 0.2, when: "beforeChildren", staggerChildren: 0.1 },
     },
   };
 
@@ -135,22 +123,11 @@ const Signup = () => {
             variants={itemVariants}
             className="text-2xl font-bold text-center"
           >
-            إنشاء حساب جديد
+            Create New Acount
           </motion.h2>
         </div>
 
         <div className="p-8">
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm"
-            >
-              {error}
-            </motion.div>
-          )}
-
           {successMessage && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -162,71 +139,99 @@ const Signup = () => {
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={formik.handleSubmit} className="space-y-4">
+            {/* Name */}
             <div className="relative">
               <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 name="name"
                 placeholder="الاسم"
-                value={formData.name}
-                onChange={handleChange}
-                required
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"
               />
+              {formik.touched.name && formik.errors.name && (
+                <div className="text-red-500 text-xs">{formik.errors.name}</div>
+              )}
             </div>
 
+            {/* Email */}
             <div className="relative">
               <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="email"
                 name="email"
                 placeholder="البريد الإلكتروني"
-                value={formData.email}
-                onChange={handleChange}
-                required
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"
               />
+              {formik.touched.email && formik.errors.email && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.email}
+                </div>
+              )}
             </div>
 
+            {/* Password */}
             <div className="relative">
               <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="password"
                 name="password"
                 placeholder="كلمة المرور"
-                value={formData.password}
-                onChange={handleChange}
-                required
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"
               />
+              {formik.touched.password && formik.errors.password && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.password}
+                </div>
+              )}
             </div>
 
+            {/* Phone */}
             <div className="relative">
               <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 name="phone"
                 placeholder="رقم التليفون"
-                value={formData.phone}
-                onChange={handleChange}
-                required
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"
               />
+              {formik.touched.phone && formik.errors.phone && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.phone}
+                </div>
+              )}
             </div>
 
+            {/* Role */}
             <div className="relative">
               <FiBriefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 name="role"
                 placeholder="الوظيفة"
-                value={formData.role}
-                onChange={handleChange}
+                value={formik.values.role}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:border-indigo-500"
               />
+              {formik.touched.role && formik.errors.role && (
+                <div className="text-red-500 text-xs">{formik.errors.role}</div>
+              )}
             </div>
 
+            {/* Skills */}
             <div>
               <label className="block text-gray-700 mb-2 font-semibold">
                 المهارات:
@@ -243,7 +248,7 @@ const Signup = () => {
                   >
                     <input
                       type="checkbox"
-                      checked={formData.skills.includes(skill)}
+                      checked={formik.values.skills.includes(skill)}
                       onChange={() => handleSkillChange(skill)}
                       className="accent-indigo-500"
                     />
@@ -251,6 +256,12 @@ const Signup = () => {
                   </motion.label>
                 ))}
               </div>
+
+              {formik.touched.skills && formik.errors.skills && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.skills}
+                </div>
+              )}
 
               <div className="flex space-x-2">
                 <input
@@ -272,11 +283,16 @@ const Signup = () => {
 
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={formik.isSubmitting}
               className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-lg transition duration-300"
             >
-              {isSubmitting ? "جاري إنشاء الحساب..." : "إنشاء حساب"}
+              {formik.isSubmitting ? "جاري إنشاء الحساب..." : "إنشاء حساب"}
             </button>
+            <Link to="/Signin">
+              <button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-lg transition duration-300 mt-2">
+                Signin
+              </button>
+            </Link>
           </form>
         </div>
       </motion.div>

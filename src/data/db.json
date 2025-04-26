@@ -1,137 +1,36 @@
 {
   "projects": [
     {
-      "name": "Planify",
-      "description": "sdvfdssd dfvfdsd sdffds",
-      "startDate": "2025-04-25",
-      "endDate": "2025-05-10",
-      "status": "planned",
-      "team": [
-        2,
-        1
-      ],
-      "tasks": [
-        {
-          "id": 1,
-          "title": "تصميم الصفحة الرئيسية",
-          "status": "Completed"
-        },
-        {
-          "id": 2,
-          "title": "إعداد الباك اند",
-          "status": "In Progress"
-        },
-        {
-          "id": 3,
-          "title": "إعداد الباك اند",
-          "status": "In Progress"
-        },
-        {
-          "id": 4,
-          "title": "إعداد الباك اند",
-          "status": "In Progress"
-        },
-        {
-          "id": 5,
-          "title": "إعداد الباك اند",
-          "status": "In Progress"
-        },
-        {
-          "id": 6,
-          "title": "رفع المشروع",
-          "status": "Not Started"
-        }
-      ],
-      "id": 1745409946299,
-      "createdAt": "2025-04-23T12:05:46.299Z"
-    },
-    {
-      "name": "pampers",
-      "description": "متجر الكتروني لبيع حفاضات الاطفال",
-      "startDate": "2025-04-26",
-      "endDate": "2025-04-26",
-      "status": "completed",
-      "team": [
-        1745662347755,
-        2347755
-      ],
-      "tasks": [
-        {
-          "id": 1745533583199,
-          "title": "contact section",
-          "status": "Completed"
-        },
-        {
-          "id": 1745533627566,
-          "title": "navbar&translation",
-          "status": "Completed"
-        },
-        {
-          "id": 1745533648429,
-          "title": "api rest",
-          "status": "Completed"
-        }
-      ],
-      "id": 1745533716980,
-      "createdAt": "2025-04-24T22:28:36.980Z"
-    },
-    {
       "name": "trello",
-      "description": "Task management application",
-      "startDate": "2025-04-25",
-      "endDate": "2025-05-03",
-      "status": "completed",
-      "team": [
-        2,
-        4,
-        3,
-        1
-      ],
-      "tasks": [
-        {
-          "id": 1745537300820,
-          "title": "frontend",
-          "status": "Completed"
-        },
-        {
-          "id": 1745537312992,
-          "title": "backend",
-          "status": "Completed"
-        },
-        {
-          "id": 1745537325987,
-          "title": "ui/ux",
-          "status": "Completed"
-        }
-      ],
-      "id": 1745537329542,
-      "createdAt": "2025-04-24T23:28:49.542Z"
-    },
-    {
-      "name": "abdelrahman",
-      "description": "ءؤسس",
-      "startDate": "2025-04-19",
-      "endDate": "2025-05-09",
+      "description": "dfghg,hghd",
+      "startDate": "2025-04-26",
+      "endDate": "2025-04-30",
       "status": "in-progress",
       "team": [
-        4,
-        1,
-        3
+        1745668919679,
+        1745669214081,
+        1745669892384,
+        1745675999943
       ],
       "tasks": [
         {
-          "id": 1745538626516,
-          "title": "سءؤ",
+          "id": 1745677268218,
+          "title": "backend",
           "status": "In Progress"
         },
         {
-          "id": 1745538635259,
-          "title": "بيسيب",
-          "status": "Completed"
+          "id": 1745677284603,
+          "title": "uiux",
+          "status": "In Progress"
+        },
+        {
+          "id": 1745677292969,
+          "title": "frontend",
+          "status": "In Progress"
         }
       ],
-      "id": 1745538636902,
-      "createdAt": "2025-04-24T23:50:36.902Z"
+      "id": 1745677298267,
+      "createdAt": "2025-04-26T14:21:38.267Z"
     }
   ],
   "tasks": [],
@@ -145,7 +44,9 @@
       "skills": [
         "React",
         "Next.js"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745669214081,
@@ -159,7 +60,9 @@
         "React",
         "HTML",
         "Django"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745669278217,
@@ -173,7 +76,9 @@
         "HTML",
         "Node.js",
         "Django"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745669892384,
@@ -183,7 +88,9 @@
       "phone": "01023685258",
       "skills": [
         "figma"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745670466616,
@@ -196,7 +103,9 @@
         "CSS",
         "React",
         "Node.js"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745670605525,
@@ -208,7 +117,9 @@
         "CSS",
         "Python",
         "Next.js"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745670710465,
@@ -222,7 +133,9 @@
         "Node.js",
         "HTML",
         "JavaScript"
-      ]
+      ],
+      "isAdmin": false,
+      "isLead": false
     },
     {
       "id": 1745672282014,
@@ -236,6 +149,55 @@
         "Node.js",
         "JavaScript",
         "Next.js"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1745675623299,
+      "name": "mahmoud tohamy",
+      "role": "backend",
+      "email": "tohamy@gmail.com",
+      "phone": "01023698585",
+      "skills": [
+        "Django",
+        "Node.js",
+        "JavaScript",
+        "HTML",
+        "Next.js"
+      ]
+    },
+    {
+      "id": 1745675999943,
+      "name": "Assmaa Ramadan",
+      "role": "ui/ux",
+      "email": "Assmaa@gmail.com",
+      "phone": "01025874125",
+      "skills": [
+        "figma"
+      ]
+    },
+    {
+      "id": 1745678077606,
+      "name": "walid arafat",
+      "role": "فرونت اند",
+      "email": "walid@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "JavaScript"
+      ]
+    },
+    {
+      "id": 1745678206234,
+      "name": "eslaam gomaa",
+      "role": "فرونت اند",
+      "email": "e@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "React",
+        "CSS",
+        "Next.js",
+        "HTML"
       ]
     }
   ]
