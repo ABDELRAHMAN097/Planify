@@ -107,20 +107,20 @@ const MemberDetails = () => {
             {/* معلومات إضافية */}
             <div className="space-y-4">
               <div className="bg-gray-100 p-4 rounded-lg">
-                <h3 className="font-medium mb-2">المهارات</h3>
+                <h3 className="font-medium mb-2">skills</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['JavaScript', 'React', 'HTML/CSS'].map(skill => (
-                    <span key={skill} className="px-3 py-1 bg-white rounded-full text-sm">
-                      {skill}
+                  {member.skills.map(skill => (
+                    <span key={skill.id} className="px-3 py-1 bg-white rounded-full text-sm">
+                      {skill.name}
                     </span>
                   ))}
                 </div>
               </div>
               
               <div className="bg-gray-100 p-4 rounded-lg">
-                <h3 className="font-medium mb-2">معلومات الاتصال</h3>
+                <h3 className="font-medium mb-2">Contact info</h3>
                 <p className="text-sm">Email : {member.email}</p>
-                <p className="text-sm mt-1">Phone : +123456789</p>
+                <p className="text-sm mt-1">Phone : {member.phone}</p>
               </div>
             </div>
           </div>

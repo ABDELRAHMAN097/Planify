@@ -9,6 +9,8 @@ import MemberDetails from "./features/team/MemberDetails.jsx";
 import ProjectTeam from "./features/projects/ProjectTeam.jsx";
 import ProjectTeamManager from "./features/team/ProjectTeamManager.jsx";
 import EditProject from "./features/projects/EditProject.jsx";
+import Signin from "./pages/Signin.jsx";
+import Signup from "./pages/Signup.jsx";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           element={<ProjectTeamManager />}
         />
         <Route path="/projects/edit/:projectId" element={<EditProject />} />
+        <Route path="/Signin" element={<Signin />} />
+        <Route path="/Signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

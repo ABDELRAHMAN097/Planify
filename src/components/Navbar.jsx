@@ -23,12 +23,14 @@ const Navbar = () => {
               <Link to="/TeamList" className="text-gray-700 hover:text-purple-600">
                 Team
               </Link>
-              <a href="/" className="text-gray-700 hover:text-purple-600">
+              <Link to="/" className="text-gray-700 hover:text-purple-600">
               <FaHome className="text-xl"/>
-              </a>
+              </Link>
+              <Link to="Signup">
               <button className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
                 بدء الاستخدام
               </button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}

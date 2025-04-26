@@ -1,6 +1,7 @@
 import { FaCheck, FaStar } from "react-icons/fa";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -41,9 +42,11 @@ const Home = () => {
             إدارة المهام باحترافية مع أدوات تعاون متقدمة
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4">
-            <button className="bg-white text-purple-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100">
-              التجربة المجانية
-            </button>
+            <Link to="Signup">
+              <button className="bg-white text-purple-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100">
+                التجربة المجانية
+              </button>
+            </Link>
             <button className="border-2 border-white px-8 py-3 rounded-lg text-lg hover:bg-white hover:text-purple-600">
               مشاهدة العرض التوضيحي
             </button>
@@ -96,9 +99,15 @@ const Home = () => {
             <table className="min-w-full text-right">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-4 border font-semibold text-center">الميزة</th>
-                  <th className="px-6 py-4 border font-semibold text-center">Planify</th>
-                  <th className="px-6 py-4 border font-semibold text-center">Trello</th>
+                  <th className="px-6 py-4 border font-semibold text-center">
+                    الميزة
+                  </th>
+                  <th className="px-6 py-4 border font-semibold text-center">
+                    Planify
+                  </th>
+                  <th className="px-6 py-4 border font-semibold text-center">
+                    Trello
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -150,9 +159,11 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">جاهز للبدء؟</h2>
           <p className="text-xl mb-8">انضم إلى آلاف الفرق التي تعتمد علينا</p>
-          <button className="bg-white text-purple-600 px-12 py-4 rounded-lg text-xl font-semibold hover:bg-gray-100">
-            إنشاء حساب مجاني
-          </button>
+          <Link to="Signup">
+            <button className="bg-white text-purple-600 px-12 py-4 rounded-lg text-xl font-semibold hover:bg-gray-100">
+              إنشاء حساب مجاني
+            </button>
+          </Link>
         </div>
       </motion.div>
 
