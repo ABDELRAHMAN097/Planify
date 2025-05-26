@@ -1,0 +1,298 @@
+{
+  "projects": [
+    {
+      "name": "blogs",
+      "description": "news website",
+      "startDate": "2025-05-08",
+      "endDate": "2025-05-31",
+      "status": "completed",
+      "team": [
+        1745670605525,
+        1745757575847,
+        1745787202433
+      ],
+      "tasks": [
+        {
+          "id": 1746016224392,
+          "title": "task2",
+          "status": "Completed",
+          "assignedTo": 1745757575847
+        }
+      ],
+      "id": 1746016242629,
+      "createdAt": "2025-04-30T12:30:42.629Z"
+    },
+    {
+      "name": "trello",
+      "description": "Task management project and distributing them to individuals in the team",
+      "startDate": "2025-05-01",
+      "endDate": "2025-05-24",
+      "status": "completed",
+      "team": [
+        1745670605525,
+        1745757575847,
+        1745758038458,
+        1745675999943
+      ],
+      "tasks": [
+        {
+          "id": 1746024728107,
+          "title": "task 2",
+          "status": "Completed",
+          "assignedTo": 1745757575847
+        }
+      ],
+      "id": 1746024740819,
+      "createdAt": "2025-04-30T14:52:20.819Z"
+    },
+    {
+      "name": "pampers",
+      "description": "w-ww-w-w--w-w-www--w-w--w-w-w-w-",
+      "startDate": "2025-05-04",
+      "endDate": "2025-05-28",
+      "status": "planned",
+      "team": [
+        1745787202433,
+        1745678206234,
+        1745675999943,
+        1745757575847
+      ],
+      "tasks": [
+        {
+          "id": 1746287035859,
+          "title": "task 1",
+          "status": "Completed",
+          "assignedTo": 1745675999943
+        },
+        {
+          "id": 1746287052068,
+          "title": "task 2",
+          "status": "Not Started",
+          "assignedTo": 1745678206234
+        },
+        {
+          "id": 1746287062814,
+          "title": "task 3",
+          "status": "Completed",
+          "assignedTo": 1745787202433
+        }
+      ],
+      "id": 1746287104787,
+      "createdAt": "2025-05-03T15:45:04.787Z"
+    },
+    {
+      "name": "الضحك",
+      "description": "ي",
+      "startDate": "2025-05-04",
+      "endDate": "2025-05-29",
+      "status": "completed",
+      "team": [
+        1745757575847,
+        1745670605525
+      ],
+      "tasks": [
+        {
+          "id": 1746367364373,
+          "title": "سي",
+          "status": "In Progress",
+          "assignedTo": 1745757575847
+        }
+      ],
+      "id": 1746367398566,
+      "createdAt": "2025-05-04T14:03:18.566Z"
+    }
+  ],
+  "tasks": [],
+  "team": [
+    {
+      "id": 1745668919679,
+      "name": "Ahmed Maher",
+      "role": "فرونت اند",
+      "email": "Ahmed@gmail.com",
+      "phone": "01147582520",
+      "skills": [
+        "React",
+        "Next.js"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1745670605525,
+      "name": "Abdelrahman",
+      "role": "فرونت اند",
+      "email": "dfgfdg@gmail.com",
+      "phone": "010588777",
+      "skills": [
+        "CSS",
+        "Python",
+        "Next.js"
+      ],
+      "isAdmin": true,
+      "isLead": true
+    },
+    {
+      "id": 1745675999943,
+      "name": "Assmaa Ramadan",
+      "role": "ui/ux",
+      "email": "Assmaa@gmail.com",
+      "phone": "01025874125",
+      "skills": [
+        "figma"
+      ],
+      "isAdmin": false,
+      "isLead": true
+    },
+    {
+      "id": 1745678077606,
+      "name": "walid arafat",
+      "role": "فرونت اند",
+      "email": "walid@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "JavaScript"
+      ],
+      "isAdmin": false,
+      "isLead": true
+    },
+    {
+      "id": 1745678206234,
+      "name": "eslaam gomaa",
+      "role": "فرونت اند",
+      "email": "e@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "React",
+        "CSS",
+        "Next.js",
+        "HTML"
+      ],
+      "isAdmin": false,
+      "isLead": true
+    },
+    {
+      "id": 1745757575847,
+      "name": "admin",
+      "role": "frontend",
+      "email": "admin@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "HTML",
+        "React",
+        "CSS",
+        "Python",
+        "Next.js",
+        "JavaScript"
+      ],
+      "isAdmin": true,
+      "isLead": true
+    },
+    {
+      "id": 1745758038458,
+      "name": "aya mohamed",
+      "role": "backend",
+      "email": "aya@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "Next.js",
+        "Python",
+        "Node.js",
+        "JavaScript",
+        "Django"
+      ],
+      "isAdmin": false,
+      "isLead": true
+    },
+    {
+      "id": 1745758464133,
+      "name": "boody",
+      "role": "backend",
+      "email": "boo@gmail.com",
+      "phone": "01023658741",
+      "skills": [
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1745760674942,
+      "name": "ahmed",
+      "role": "ui/ux",
+      "email": "ahmed52@gmail.com",
+      "phone": "01525554444",
+      "skills": [
+        "HTML",
+        "Django"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1745776953670,
+      "name": "dode",
+      "role": "backend",
+      "email": "dooo@gmail.com",
+      "phone": "01512147709",
+      "skills": [
+        "Django",
+        "HTML",
+        "Node.js",
+        "JavaScript",
+        "Next.js",
+        "Python"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1745787202433,
+      "name": "salma",
+      "role": "backend",
+      "email": "salma45@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "HTML",
+        "Node.js",
+        "JavaScript",
+        "Django",
+        "Python"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1745832916104,
+      "name": "Abdelrahman",
+      "role": "ui/ux",
+      "email": "abdelrahman@gmail.com",
+      "phone": "01023671214",
+      "skills": [
+        "figma"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1747913654196,
+      "name": "Kennedy Weeks",
+      "role": "Duis blanditiis enim",
+      "email": "siwacic@mailinator.com",
+      "phone": "01135184525",
+      "skills": [
+        "Django",
+        "HTML",
+        "Node.js",
+        "JavaScript",
+        "React",
+        "CSS",
+        "Python",
+        "Next.js"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    }
+  ]
+}
