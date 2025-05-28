@@ -17,6 +17,7 @@ export function AllContextProvider({ children }) {
   }
 }, [darkMode]);
 
+
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
   };
