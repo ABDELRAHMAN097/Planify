@@ -86,15 +86,15 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="max-w-3xl border-2 my-3 mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <h2 className="text-2xl p-1 font-bold mb-8 text-center text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+    <div className="max-w-3xl border-2 my-3 mx-auto p-6 bg-white dark:bg-gray-900 dark:text-white rounded-xl shadow-lg">
+      <h2 className="text-2xl p-1 font-bold mb-8 text-center text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 dark:text-white bg-clip-text text-transparent">
         Create a new project
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
               Project name
             </label>
             <input
@@ -102,25 +102,25 @@ const CreateProject = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               required
             />
           </div>
 
           <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
               Description
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             ></textarea>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
               Start date
             </label>
             <input
@@ -129,13 +129,13 @@ const CreateProject = () => {
               value={formData.startDate}
               onChange={handleChange}
               min={new Date().toISOString().split("T")[0]}
-              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
               End date
             </label>
             <input
@@ -148,20 +148,20 @@ const CreateProject = () => {
                   .toISOString()
                   .split("T")[0]
               }
-              className="w-full outline-none px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
               status
             </label>
             <select
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              className="w-full px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             >
               <option value="planned">planned</option>
               <option value="in-progress">in-progress</option>
@@ -171,14 +171,14 @@ const CreateProject = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label className="block text-sm dark:text-white font-medium text-gray-700 mb-3">
             Team members
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {members.map((member) => (
               <div
                 key={member.id}
-                className={`p-3 border rounded-lg cursor-pointer transition-all ${
+                className={`p-3 border rounded-lg cursor-pointer transition-all dark:bg-gray-900 dark:text-white ${
                   formData.team.includes(member.id)
                     ? "bg-purple-100 border-purple-500"
                     : "bg-gray-50 hover:bg-gray-100 border-gray-200"
@@ -190,7 +190,7 @@ const CreateProject = () => {
                     className={`w-5 h-5 rounded flex items-center justify-center ${
                       formData.team.includes(member.id)
                         ? "bg-purple-600 text-white"
-                        : "bg-white border border-gray-300"
+                        : "bg-white border border-gray-300 dark:bg-gray-900 dark:text-white"
                     }`}
                   >
                     {formData.team.includes(member.id) && (
@@ -219,7 +219,7 @@ const CreateProject = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
             Add Tasks
           </label>
           <div className="flex flex-col md:flex-row gap-2 mb-4">
@@ -230,14 +230,14 @@ const CreateProject = () => {
                 setTaskInput({ ...taskInput, title: e.target.value })
               }
               placeholder="Task title"
-              className="flex-1 px-3 py-2 border rounded-lg"
+              className="flex-1 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white"
             />
             <select
               value={taskInput.status}
               onChange={(e) =>
                 setTaskInput({ ...taskInput, status: e.target.value })
               }
-              className="px-3 py-2 border rounded-lg"
+              className="px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white"
             >
               <option>Not Started</option>
               <option>In Progress</option>
@@ -248,7 +248,7 @@ const CreateProject = () => {
               onChange={(e) =>
                 setTaskInput({ ...taskInput, assignedTo: Number(e.target.value) })
               }
-              className="px-3 py-2 border rounded-lg"
+              className="px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white"
             >
               <option value="">Assign to...</option>
               {formData.team.map((id) => {
@@ -263,7 +263,7 @@ const CreateProject = () => {
             <button
               type="button"
               onClick={handleTaskAdd}
-              className="bg-purple-600 text-white px-4 rounded-lg"
+              className="bg-purple-600 hover:bg-purple-700 text-white px-4 rounded-lg"
             >
               Add
             </button>
@@ -291,7 +291,7 @@ const CreateProject = () => {
         <div className="flex justify-end gap-4 pt-6 border-t border-gray-200">
           <button
             type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all"
+            className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-all"
           >
             Create Project
           </button>

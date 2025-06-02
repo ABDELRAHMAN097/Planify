@@ -67,21 +67,34 @@ const MemberDetails = () => {
   }, [id, location.search]);
 
   useEffect(() => {
-    if (member && projects && projects.length > 0) {
-      const memberId = Number(id);
-      const filteredProjects = projects
-        .filter((project) => project.team?.includes(memberId))
-        .map((project) => ({
-          ...project,
-          tasks: getUserTasks(memberId).filter((task) =>
-            project.tasks?.some((pt) => pt.id === task.id)
-          ),
-          progress: getUserProgress(memberId),
-        }));
+  if (member && projects && projects.length > 0) {
+    const memberId = Number(id);
+    const filteredProjects = projects
+      .filter((project) => project.team?.includes(memberId))
+      .map((project) => {
+        const userTasksInProject = project.tasks?.filter(
+          (task) => task.assignedTo === memberId
+        ) || [];
 
-      setMemberProjects(filteredProjects);
-    }
-  }, [projects, member, id]);
+        const completedTasks = userTasksInProject.filter(
+          (task) => task.status.trim().toLowerCase() === "completed"
+        ).length;
+
+        const progress = userTasksInProject.length > 0
+          ? Math.round((completedTasks / userTasksInProject.length) * 100)
+          : 0;
+
+        return {
+          ...project,
+          tasks: userTasksInProject,
+          progress,
+        };
+      });
+
+    setMemberProjects(filteredProjects);
+  }
+}, [projects, member, id]);
+
 
   const handleTaskStatusChange = async (projectId, taskId, newStatus) => {
     if (!user || user.id !== Number(id)) {

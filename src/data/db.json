@@ -60,7 +60,7 @@
         {
           "id": 1746287035859,
           "title": "task 1",
-          "status": "Completed",
+          "status": "Not Started",
           "assignedTo": 1745675999943
         },
         {
@@ -78,6 +78,47 @@
       ],
       "id": 1746287104787,
       "createdAt": "2025-05-03T15:45:04.787Z"
+    },
+    {
+      "name": "Xander Reynolds",
+      "description": "Sint molestiae solut",
+      "startDate": "2025-06-06",
+      "endDate": "2025-07-12",
+      "status": "in-progress",
+      "team": [
+        1745787202433,
+        1745678077606,
+        1745757575847,
+        1745670605525
+      ],
+      "tasks": [
+        {
+          "id": 1748869126981,
+          "title": "Saepe laboriosam al",
+          "status": "Not Started",
+          "assignedTo": 1745787202433
+        },
+        {
+          "id": 1748869142652,
+          "title": "Debitis animi obcae",
+          "status": "In Progress",
+          "assignedTo": 1745678077606
+        },
+        {
+          "id": 1748869159156,
+          "title": "Ea et exercitationem",
+          "status": "Completed",
+          "assignedTo": 1745757575847
+        },
+        {
+          "id": 1748869175203,
+          "title": "Est ipsum nihil aut ",
+          "status": "Not Started",
+          "assignedTo": 1745670605525
+        }
+      ],
+      "id": 1748869188783,
+      "createdAt": "2025-06-02T12:59:48.783Z"
     }
   ],
   "tasks": [],

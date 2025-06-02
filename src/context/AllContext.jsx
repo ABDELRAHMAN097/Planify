@@ -51,11 +51,20 @@ const getUserTasks = (userId) => {
 // احسب نسبة التقدم الخاصة بالمستخدم
 const getUserProgress = (userId) => {
   const tasks = getUserTasks(userId);
+  console.log("Tasks:", tasks);
+
   if (tasks.length === 0) return 0;
 
-  const completed = tasks.filter((task) => task.status === "Completed").length;
-  return Math.round((completed / tasks.length) * 100);
+  const completed = tasks.filter(
+    (task) => task.status.trim().toLowerCase() === "completed".toLowerCase()
+  ).length;
+
+  const progress = Math.round((completed / tasks.length) * 100);
+  console.log("Completed:", completed, "Total:", tasks.length, "Progress:", progress);
+
+  return progress;
 };
+
 
 
   // Projects: تحميل البيانات
