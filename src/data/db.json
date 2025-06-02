@@ -5,7 +5,7 @@
       "description": "news website",
       "startDate": "2025-05-08",
       "endDate": "2025-05-31",
-      "status": "planned",
+      "status": "completed",
       "team": [
         1745670605525,
         1745757575847,
@@ -15,7 +15,7 @@
         {
           "id": 1746016224392,
           "title": "task2",
-          "status": "Not Started",
+          "status": "Completed",
           "assignedTo": 1745757575847
         }
       ],
@@ -119,6 +119,102 @@
       ],
       "id": 1748869188783,
       "createdAt": "2025-06-02T12:59:48.783Z"
+    },
+    {
+      "name": "Kyle Hyde",
+      "description": "Et est qui quo at ul",
+      "startDate": "2025-06-05",
+      "endDate": "2025-09-20",
+      "status": "planned",
+      "team": [
+        1745776953670,
+        1745787202433,
+        1745670605525,
+        1745757575847,
+        1745675999943,
+        1745760674942
+      ],
+      "tasks": [
+        {
+          "id": 1748872120651,
+          "title": "Omnis dolor est a a",
+          "status": "Not Started",
+          "assignedTo": 1745776953670
+        },
+        {
+          "id": 1748872130911,
+          "title": "Autem enim et aut re",
+          "status": "Not Started",
+          "assignedTo": 1745787202433
+        },
+        {
+          "id": 1748872140699,
+          "title": "Ullamco consequat R",
+          "status": "Completed",
+          "assignedTo": 1745670605525
+        },
+        {
+          "id": 1748872150135,
+          "title": "Lorem autem aliquam ",
+          "status": "Completed",
+          "assignedTo": 1745757575847
+        },
+        {
+          "id": 1748872164151,
+          "title": "Quidem cupidatat qui",
+          "status": "Not Started",
+          "assignedTo": 1745675999943
+        },
+        {
+          "id": 1748872173596,
+          "title": "Eos sed qui rem laud",
+          "status": "Not Started",
+          "assignedTo": 1745760674942
+        }
+      ],
+      "id": 1748872212462,
+      "createdAt": "2025-06-02T13:50:12.463Z"
+    },
+    {
+      "name": "Quemby Buckley",
+      "description": "Sit repellendus La",
+      "startDate": "2025-06-04",
+      "endDate": "2025-06-28",
+      "status": "planned",
+      "team": [
+        1748807358546,
+        1748806019571,
+        1748805910092,
+        1745757575847
+      ],
+      "tasks": [
+        {
+          "id": 1748886028284,
+          "title": "Reprehenderit ipsa ",
+          "status": "Not Started",
+          "assignedTo": 1748807358546
+        },
+        {
+          "id": 1748886044355,
+          "title": "Aut asperiores ut au",
+          "status": "Not Started",
+          "assignedTo": 1748806019571
+        },
+        {
+          "id": 1748886060044,
+          "title": "Autem tempora magnam",
+          "status": "Not Started",
+          "assignedTo": 1748805910092
+        },
+        {
+          "id": 1748886078874,
+          "title": "Suscipit inventore o",
+          "status": "Completed",
+          "assignedTo": 1748807358546
+        }
+      ],
+      "id": 1748886148567,
+      "createdAt": "2025-06-02T17:42:28.567Z"
     }
   ],
   "tasks": [],

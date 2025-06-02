@@ -24,22 +24,28 @@ const Dashboard = () => {
     loadProjects();
   }, [loadProjects]);
 
+  const normalizeStatus = (status) => {
+    if (!status || status.trim() === "") return "blank";
+    return status.toString().toLowerCase().trim();
+  };
+
   const filteredProjects = projects.filter((project) => {
-    if (!project) return false;
+  if (!project) return false;
 
-    const name = project.name || "";
-    const description = project.description || "";
-    const currentStatus = project.status || "";
+  const name = project.name || "";
+  const description = project.description || "";
+  const currentStatus = normalizeStatus(project.status);
 
-    const matchesSearch =
-      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      description.toLowerCase().includes(searchTerm.toLowerCase());
+  const matchesSearch =
+    name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    description.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return (
-      matchesSearch &&
-      (filterStatus === "all" || filterStatus === currentStatus)
-    );
-  });
+  const matchesStatus = 
+    filterStatus === "all" ||
+    filterStatus.toLowerCase() === currentStatus;
+
+  return matchesSearch && matchesStatus;
+});
 
   if (loading) {
     return (
@@ -125,7 +131,6 @@ const Dashboard = () => {
                   {project.description || "No description available"}
                 </p>
 
-                {/* Progress Section */}
                 <div className="mb-4">
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-sm font-medium">Project Progress</span>
@@ -140,13 +145,12 @@ const Dashboard = () => {
                     </span>
                     <span>
                       {status === "completed"
-                        ? "Completed"
+                        ? "completed"
                         : `${progress}% done`}
                     </span>
                   </div>
                 </div>
 
-                {/* Project Meta */}
                 <div className="mt-4 flex items-center justify-start flex-wrap gap-2">
                   <Link to={`/tasks-list/${project.id}`}>
                     <span className="bg-gray-100 px-2 py-1 rounded text-sm text-purple-500 hover:text-purple-600 dark:bg-purple-600 dark:text-white">
@@ -166,7 +170,6 @@ const Dashboard = () => {
                   </span>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="mt-4 flex justify-between items-center">
                   <div className="space-x-2 flex items-center justify-center gap-2">
                     <Link

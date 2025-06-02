@@ -77,226 +77,243 @@ const CreateProject = () => {
         id: Date.now(),
         createdAt: new Date().toISOString(),
       });
-      alert("تم إنشاء المشروع بنجاح!");
+      alert("Project created successfully!");
       navigate("/dashboard");
     } catch (error) {
       console.error("Error creating project:", error);
-      alert("حدث خطأ أثناء إنشاء المشروع");
+      alert("Error creating project");
     }
   };
 
   return (
-    <div className="max-w-3xl border-2 my-3 mx-auto p-6 bg-white dark:bg-gray-900 dark:text-white rounded-xl shadow-lg">
-      <h2 className="text-2xl p-1 font-bold mb-8 text-center text-gray-800 bg-gradient-to-r from-purple-600 to-blue-600 dark:text-white bg-clip-text text-transparent">
-        Create a new project
-      </h2>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="col-span-2">
-            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
-              Project name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            />
-          </div>
-
-          <div className="col-span-2">
-            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-            ></textarea>
-          </div>
-
-          <div>
-            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
-              Start date
-            </label>
-            <input
-              type="date"
-              name="startDate"
-              value={formData.startDate}
-              onChange={handleChange}
-              min={new Date().toISOString().split("T")[0]}
-              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
-              End date
-            </label>
-            <input
-              type="date"
-              name="endDate"
-              value={formData.endDate}
-              onChange={handleChange}
-              min={
-                new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)
-                  .toISOString()
-                  .split("T")[0]
-              }
-              className="w-full outline-none px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
-              status
-            </label>
-            <select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-            >
-              <option value="planned">planned</option>
-              <option value="in-progress">in-progress</option>
-              <option value="completed">completed</option>
-            </select>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-6">
+      <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-purple-600 to-blue-500 p-6 text-white">
+          <h1 className="text-3xl font-bold">Create New Project</h1>
+          <p className="opacity-90">Fill in the details to start your new project</p>
         </div>
 
-        <div>
-          <label className="block text-sm dark:text-white font-medium text-gray-700 mb-3">
-            Team members
-          </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {members.map((member) => (
-              <div
-                key={member.id}
-                className={`p-3 border rounded-lg cursor-pointer transition-all dark:bg-gray-900 dark:text-white ${
-                  formData.team.includes(member.id)
-                    ? "bg-purple-100 border-purple-500"
-                    : "bg-gray-50 hover:bg-gray-100 border-gray-200"
-                }`}
-                onClick={() => handleMemberSelect(member.id)}
-              >
-                <div className="flex items-center gap-3">
+        {/* Form */}
+        <div className="p-6 space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Basic Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Project Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  required
+                  placeholder="e.g., Company Website Development"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Status
+                </label>
+                <select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="planned">Planned</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Project Description
+              </label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Brief description of project goals..."
+              ></textarea>
+            </div>
+
+            {/* Dates */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={handleChange}
+                  min={new Date().toISOString().split("T")[0]}
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  End Date
+                </label>
+                <input
+                  type="date"
+                  name="endDate"
+                  value={formData.endDate}
+                  onChange={handleChange}
+                  min={formData.startDate || new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Team Members */}
+            <div className="space-y-4">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Team Members
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {members.map((member) => (
                   <div
-                    className={`w-5 h-5 rounded flex items-center justify-center ${
+                    key={member.id}
+                    onClick={() => handleMemberSelect(member.id)}
+                    className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center gap-3 ${
                       formData.team.includes(member.id)
-                        ? "bg-purple-600 text-white"
-                        : "bg-white border border-gray-300 dark:bg-gray-900 dark:text-white"
+                        ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30"
+                        : "border-gray-200 dark:border-gray-600 hover:border-purple-300"
                     }`}
                   >
-                    {formData.team.includes(member.id) && (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-3 w-3"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                      formData.team.includes(member.id)
+                        ? "bg-purple-600 text-white"
+                        : "bg-gray-200 dark:bg-gray-600"
+                    }`}>
+                      {formData.team.includes(member.id) && (
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <div>
+                      <h4 className="font-medium dark:text-white">{member.name}</h4>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{member.role}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">{member.name}</p>
-                    <p className="text-xs text-gray-500">{member.role}</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
-        <div>
-          <label className="block text-sm dark:text-white font-medium text-gray-700 mb-2">
-            Add Tasks
-          </label>
-          <div className="flex flex-col md:flex-row gap-2 mb-4">
-            <input
-              type="text"
-              value={taskInput.title}
-              onChange={(e) =>
-                setTaskInput({ ...taskInput, title: e.target.value })
-              }
-              placeholder="Task title"
-              className="flex-1 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white"
-            />
-            <select
-              value={taskInput.status}
-              onChange={(e) =>
-                setTaskInput({ ...taskInput, status: e.target.value })
-              }
-              className="px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white"
-            >
-              <option>Not Started</option>
-              <option>In Progress</option>
-              <option>Completed</option>
-            </select>
-            <select
-              value={taskInput.assignedTo}
-              onChange={(e) =>
-                setTaskInput({ ...taskInput, assignedTo: Number(e.target.value) })
-              }
-              className="px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white"
-            >
-              <option value="">Assign to...</option>
-              {formData.team.map((id) => {
-                const member = members.find((m) => m.id === id);
-                return (
-                  <option key={id} value={id}>
-                    {member?.name}
-                  </option>
-                );
-              })}
-            </select>
-            <button
-              type="button"
-              onClick={handleTaskAdd}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 rounded-lg"
-            >
-              Add
-            </button>
-          </div>
+            {/* Tasks */}
+            <div className="space-y-4">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Project Tasks
+              </label>
+              
+              <div className="flex flex-col md:flex-row gap-3">
+                <input
+                  type="text"
+                  value={taskInput.title}
+                  onChange={(e) => setTaskInput({...taskInput, title: e.target.value})}
+                  placeholder="Task title"
+                  className="flex-1 px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+                
+                <select
+                  value={taskInput.status}
+                  onChange={(e) => setTaskInput({...taskInput, status: e.target.value})}
+                  className="px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="Not Started">Not Started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+                
+                <select
+                  value={taskInput.assignedTo}
+                  onChange={(e) => setTaskInput({...taskInput, assignedTo: Number(e.target.value)})}
+                  className="px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="">Assign to...</option>
+                  {formData.team.map(id => {
+                    const member = members.find(m => m.id === id);
+                    return <option key={id} value={id}>{member?.name}</option>
+                  })}
+                </select>
+                
+                <button
+                  type="button"
+                  onClick={handleTaskAdd}
+                  className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  Add Task
+                </button>
+              </div>
+              
+              {formData.tasks.length > 0 && (
+                <div className="mt-4 space-y-3">
+                  {formData.tasks.map(task => {
+                    const assignedMember = members.find(m => m.id === task.assignedTo);
+                    return (
+                      <div key={task.id} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-3 h-3 rounded-full ${
+                            task.status === "Completed" ? "bg-green-500" :
+                            task.status === "In Progress" ? "bg-blue-500" : "bg-yellow-500"
+                          }`}></div>
+                          <span className="font-medium dark:text-white">{task.title}</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            {assignedMember?.name || "Unassigned"}
+                          </span>
+                          <span className={`px-3 py-1 text-xs rounded-full ${
+                            task.status === "Completed" ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200" :
+                            task.status === "In Progress" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" :
+                            "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                          }`}>
+                            {task.status}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
 
-          {formData.tasks.length > 0 && (
-            <ul className="list-disc pl-6 space-y-1">
-              {formData.tasks.map((task) => {
-                const assignedMember = members.find(
-                  (m) => m.id === task.assignedTo
-                );
-                return (
-                  <li key={task.id}>
-                    {task.title} - <span className="italic">{task.status}</span> -{' '}
-                    <span className="text-sm text-gray-600">
-                      {assignedMember?.name || "Unassigned"}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+            {/* Form Actions */}
+            <div className="flex justify-end gap-4 pt-6">
+              <button
+                type="button"
+                onClick={() => navigate("/dashboard")}
+                className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-lg shadow-purple-500/20"
+              >
+                Create Project
+              </button>
+            </div>
+          </form>
         </div>
-
-        <div className="flex justify-end gap-4 pt-6 border-t border-gray-200">
-          <button
-            type="submit"
-            className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-all"
-          >
-            Create Project
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

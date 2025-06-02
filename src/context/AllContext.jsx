@@ -116,13 +116,15 @@ const getUserProgress = (userId) => {
   let status = project.status;
   
   // تحديث الحالة بناءً على نسبة الإنجاز
-  if (progress === 100) {
-    status = "completed";
-  } else if (progress > 0) {
-    status = "in-progress";
-  } else {
-    status = "planned";
-  }
+   if (!project.status) {
+      if (progress === 100) {
+        status = "completed";
+      } else if (progress > 0) {
+        status = "in-progress";
+      } else {
+        status = "not-started";
+      }
+    }
 
   return { progress, status };
 };
