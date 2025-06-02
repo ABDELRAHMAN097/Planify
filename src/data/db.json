@@ -5,7 +5,7 @@
       "description": "news website",
       "startDate": "2025-05-08",
       "endDate": "2025-05-31",
-      "status": "completed",
+      "status": "planned",
       "team": [
         1745670605525,
         1745757575847,
@@ -15,7 +15,7 @@
         {
           "id": 1746016224392,
           "title": "task2",
-          "status": "Completed",
+          "status": "Not Started",
           "assignedTo": 1745757575847
         }
       ],
@@ -27,7 +27,7 @@
       "description": "Task management project and distributing them to individuals in the team",
       "startDate": "2025-05-01",
       "endDate": "2025-05-24",
-      "status": "completed",
+      "status": "planned",
       "team": [
         1745670605525,
         1745758038458,
@@ -38,7 +38,7 @@
         {
           "id": 1746024728107,
           "title": "taskKKKKKKKKKKK",
-          "status": "Completed",
+          "status": "Not Started",
           "assignedTo": 1745757575847
         }
       ],
