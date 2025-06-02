@@ -7,12 +7,8 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-
+    navigate('/signin');
     toast.success('You have successfully logged out ✅');
-
-    setTimeout(() => {
-      navigate('/signin');
-    }, 1500); 
   };
 
   return (

@@ -11,13 +11,13 @@ const SearchFilter = ({
         placeholder="Search for projects..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-2 border rounded outline-none focus:outline-none dark:bg-gray-900 dark:border dark:border-purple-500"
       />
 
       <select
         value={filterStatus}
         onChange={(e) => setFilterStatus(e.target.value)}
-        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-2 border rounded outline-none focus:outline-none dark:bg-gray-900 dark:border dark:border-purple-500"
       >
         <option value="all">All cases</option>
         <option value="planned">planned</option>

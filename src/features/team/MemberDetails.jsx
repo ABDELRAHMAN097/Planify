@@ -1,14 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
+import { AllContext } from "../../context/AllContext";
+import { toast } from "react-toastify";
 
 const MemberDetails = () => {
   const { id } = useParams();
   const location = useLocation();
+  const {
+    user,
+    projects,
+    loadProjects,
+    getUserTasks,
+    getUserProgress,
+    updateTaskStatus,
+  } = useContext(AllContext);
+
   const [member, setMember] = useState(null);
-  const [projects, setProjects] = useState([]);
+  const [memberProjects, setMemberProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [refreshFlag, setRefreshFlag] = useState(false);
 
   const roleColors = {
     مطورويب: "bg-blue-500",
@@ -23,7 +33,10 @@ const MemberDetails = () => {
 
   const normalizeRole = (role) => {
     return (
-      role?.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "") || ""
+      role
+        ?.toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/[^a-z0-9]/g, "") || ""
     );
   };
 
@@ -32,111 +45,98 @@ const MemberDetails = () => {
     return roleColors[normalizedRole] || "bg-gray-500";
   };
 
-  const calculateProjectProgress = (tasks, memberId) => {
-    if (!tasks || tasks.length === 0) return 0;
-    const memberTasks = tasks.filter(task => task.assignedTo === memberId);
-    if (memberTasks.length === 0) return 0;
-    const completed = memberTasks.filter(task => task.status === "Completed").length;
-    return Math.round((completed / memberTasks.length) * 100);
-  };
-
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchMemberData = async () => {
       try {
-        const [memberRes, projectsRes] = await Promise.all([
-          fetch(`http://localhost:3000/team/${id}`),
-          fetch("http://localhost:3000/projects"),
-        ]);
-
-        const memberData = await memberRes.json();
-        const allProjects = await projectsRes.json();
-
-        const memberProjects = allProjects
-          .filter((project) => project.team?.includes(Number(id)))
-          .map((project) => ({
-            ...project,
-            tasks: project.tasks?.filter(task => task.assignedTo === Number(id)) || [],
-            progress: calculateProjectProgress(project.tasks, Number(id)),
-          }));
-
+        const res = await fetch(`http://localhost:3000/team/${id}`);
+        const memberData = await res.json();
         setMember(memberData);
-        setProjects(memberProjects);
 
-        const userFromStorage = JSON.parse(localStorage.getItem("currentUser"));
-        setCurrentUser(userFromStorage);
+        // Load projects if not already loaded
+        if (!projects || projects.length === 0) {
+          await loadProjects();
+        }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching member data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, [id, location.search, refreshFlag]);
+    fetchMemberData();
+  }, [id, location.search]);
+
+  useEffect(() => {
+    if (member && projects && projects.length > 0) {
+      const memberId = Number(id);
+      const filteredProjects = projects
+        .filter((project) => project.team?.includes(memberId))
+        .map((project) => ({
+          ...project,
+          tasks: getUserTasks(memberId).filter((task) =>
+            project.tasks?.some((pt) => pt.id === task.id)
+          ),
+          progress: getUserProgress(memberId),
+        }));
+
+      setMemberProjects(filteredProjects);
+    }
+  }, [projects, member, id]);
 
   const handleTaskStatusChange = async (projectId, taskId, newStatus) => {
+    if (!user || user.id !== Number(id)) {
+      toast.error("You can only update your own tasks");
+      return;
+    }
+
     try {
-      const projectToUpdate = projects.find(p => p.id === projectId);
-      if (!projectToUpdate) return;
-
-      const updatedTasks = projectToUpdate.tasks.map(task => 
-        task.id === taskId ? { ...task, status: newStatus } : task
-      );
-
-      await fetch(`http://localhost:3000/projects/${projectId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          tasks: projectToUpdate.tasks.map(task => 
-            task.id === taskId ? { ...task, status: newStatus } : task
-          ) 
-        }),
-      });
-
-      setProjects(prev => 
-        prev.map(p => 
-          p.id === projectId ? 
-          { ...p, tasks: updatedTasks, progress: calculateProjectProgress(updatedTasks, Number(id)) } 
-          : p
-        )
-      );
-      setRefreshFlag(prev => !prev);
+      const success = await updateTaskStatus(projectId, taskId, newStatus);
+      if (success) {
+        toast.success("Task status updated successfully");
+      }
     } catch (err) {
       console.error("Error updating task:", err);
+      toast.error("Failed to update task status");
     }
   };
-
-  if (loading)
+  if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">Loading...</div>
+      <div className="flex justify-center items-center h-screen">
+        Loading...
+      </div>
     );
-  if (!member)
+  }
+
+  if (!member) {
     return (
       <div className="flex justify-center items-center h-screen">
         Member not found
       </div>
     );
+  }
 
-  const isOwner = currentUser && currentUser.id === member.id;
+  const isCurrentUser = user && user.id === Number(id);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <Link
-          to="/TeamList"
-          className="inline-block mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-        >
-          Back to the team
+        <Link to="/TeamList">
+          <button className="flex items-center justify-start gap-2 mb-6 px-4 py-2 bg-purple-500 text-white dark:bg-gray-900 dark:text-whiterounded dark:border rounded hover:bg-gray-300">
+            <IoChevronBackCircleSharp />
+            Back to the team
+          </button>
         </Link>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-white dark:bg-gray-900 dark:text-white dark:border rounded-xl shadow-lg overflow-hidden">
           <div className={`${getRoleColor(member.role)} p-6 text-white`}>
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center text-5xl font-bold text-gray-800">
                 {member.name?.charAt(0) || "?"}
               </div>
               <div>
-                <h1 className="text-3xl font-bold">{member.name || "No Name"}</h1>
+                <h1 className="text-3xl font-bold">
+                  {member.name || "No Name"}
+                </h1>
                 <p className="text-xl opacity-90">{member.role || "No Role"}</p>
                 <p className="opacity-80">{member.email || "No Email"}</p>
               </div>
@@ -145,14 +145,21 @@ const MemberDetails = () => {
 
           <div className="p-6 grid md:grid-cols-3 gap-6">
             <div className="md:col-span-2">
-              <h2 className="text-xl font-semibold mb-4">Your Projects</h2>
-              {projects.length > 0 ? (
+              <h2 className="text-xl font-semibold mb-4">
+                {isCurrentUser ? "Your Projects" : `${member.name}'s Projects`}
+              </h2>
+              {memberProjects.length > 0 ? (
                 <ul className="space-y-6">
-                  {projects.map((project) => (
-                    <li key={project.id} className="border-b pb-4 last:border-b-0">
+                  {memberProjects.map((project) => (
+                    <li
+                      key={project.id}
+                      className="border-b pb-4 last:border-b-0"
+                    >
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="font-medium text-lg">{project.name}</h3>
+                          <h3 className="font-medium text-lg">
+                            {project.name}
+                          </h3>
                           <p className="text-gray-600 text-sm">
                             {project.description}
                           </p>
@@ -178,12 +185,15 @@ const MemberDetails = () => {
                           ></div>
                         </div>
                         <p className="text-xs text-gray-500 mt-1">
-                          {project.progress}% complete (your tasks)
+                          {project.progress}% complete (
+                          {isCurrentUser ? "your" : "their"} tasks)
                         </p>
                       </div>
 
                       <div className="mt-4">
-                        <h4 className="text-sm font-semibold mb-2">Your Tasks:</h4>
+                        <h4 className="text-sm font-semibold mb-2">
+                          {isCurrentUser ? "Your Tasks" : "Assigned Tasks"}:
+                        </h4>
                         {project.tasks.length > 0 ? (
                           <ul className="space-y-2">
                             {project.tasks.map((task) => (
@@ -192,29 +202,30 @@ const MemberDetails = () => {
                                 className="flex justify-between items-center"
                               >
                                 <span>{task.title}</span>
-                                {isOwner ? (
+                                {isCurrentUser ? (
                                   <div className="flex gap-1">
                                     <button
                                       className={`px-2 py-1 text-xs rounded ${
-                                        task.status === "Pending"
+                                        task.status === "Not Started"
                                           ? "bg-yellow-500 text-white"
-                                          : "bg-gray-200 text-black"
+                                          : "bg-gray-200 text-black hover:bg-yellow-100"
                                       }`}
                                       onClick={() =>
                                         handleTaskStatusChange(
                                           project.id,
                                           task.id,
-                                          "Pending"
+                                          "Not Started"
                                         )
                                       }
+                                      disabled={!isCurrentUser}
                                     >
-                                      Pending
+                                      Not Started
                                     </button>
                                     <button
                                       className={`px-2 py-1 text-xs rounded ${
                                         task.status === "In Progress"
                                           ? "bg-blue-600 text-white"
-                                          : "bg-gray-200 text-black"
+                                          : "bg-gray-200 text-black hover:bg-blue-100"
                                       }`}
                                       onClick={() =>
                                         handleTaskStatusChange(
@@ -223,6 +234,7 @@ const MemberDetails = () => {
                                           "In Progress"
                                         )
                                       }
+                                      disabled={!isCurrentUser}
                                     >
                                       In Progress
                                     </button>
@@ -230,7 +242,7 @@ const MemberDetails = () => {
                                       className={`px-2 py-1 text-xs rounded ${
                                         task.status === "Completed"
                                           ? "bg-green-600 text-white"
-                                          : "bg-gray-200 text-black"
+                                          : "bg-gray-200 text-black hover:bg-green-100"
                                       }`}
                                       onClick={() =>
                                         handleTaskStatusChange(
@@ -239,12 +251,21 @@ const MemberDetails = () => {
                                           "Completed"
                                         )
                                       }
+                                      disabled={!isCurrentUser}
                                     >
                                       Completed
                                     </button>
                                   </div>
                                 ) : (
-                                  <span className="text-xs text-gray-600">
+                                  <span
+                                    className={`text-xs px-2 py-1 rounded ${
+                                      task.status === "Completed"
+                                        ? "bg-green-100 text-green-800"
+                                        : task.status === "In Progress"
+                                        ? "bg-blue-100 text-blue-800"
+                                        : "bg-yellow-100 text-yellow-800"
+                                    }`}
+                                  >
                                     {task.status}
                                   </span>
                                 )}
@@ -252,19 +273,26 @@ const MemberDetails = () => {
                             ))}
                           </ul>
                         ) : (
-                          <p className="text-gray-500 text-sm">No tasks assigned to you in this project.</p>
+                          <p className="text-gray-500 text-sm">
+                            No tasks assigned{" "}
+                            {isCurrentUser ? "to you" : "to this member"} in
+                            this project.
+                          </p>
                         )}
                       </div>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="text-gray-500">You are not involved in any projects.</p>
+                <p className="text-gray-500">
+                  {isCurrentUser ? "You are" : "This member is"} not involved in
+                  any projects.
+                </p>
               )}
             </div>
 
             <div className="space-y-4">
-              <div className="bg-gray-100 p-4 rounded-lg">
+              <div className="bg-gray-100 dark:bg-gray-900 dark:text-white dark:border p-4 rounded-lg">
                 <h3 className="font-medium mb-2">Skills</h3>
                 <div className="flex flex-wrap gap-2">
                   {member.skills?.length ? (
@@ -282,10 +310,11 @@ const MemberDetails = () => {
                 </div>
               </div>
 
-              <div className="bg-gray-100 p-4 rounded-lg">
+              <div className="bg-gray-100 dark:bg-gray-900 dark:text-white dark:border p-4 rounded-lg">
                 <h3 className="font-medium mb-2">Info</h3>
                 <p className="text-sm">Email: {member.email}</p>
                 <p className="text-sm mt-1">Phone: {member.phone}</p>
+                <p className="text-sm mt-1">Role: {member.role}</p>
               </div>
             </div>
           </div>

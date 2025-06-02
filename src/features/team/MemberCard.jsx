@@ -52,7 +52,7 @@ const MemberCard = ({ member }) => {
   };
 
   return (
-    <div className="relative w-64 h-auto py-5 mx-auto rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl shine-effect">
+    <div className="bg-gray-50 dark:bg-gray-900 dark:text-white relative w-64 h-auto py-5 mx-auto rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl shine-effect">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 to-purple-800 opacity-80"></div>
 
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white overflow-hidden shadow-xl">

@@ -13,7 +13,8 @@ import EditProject from "./features/projects/EditProject.jsx";
 import Signin from "./pages/Signin.jsx";
 import Signup from "./pages/Signup.jsx";
 import ProtectedRoutes from "./lib/utils/ProtectedRoutes.jsx";
-import { AllContextProvider } from "./context/AllContext.jsx";
+import { AllContextProvider } from "./context/AllContext";
+import Toasts from "./lib/utils/Tosts.jsx";
 function App() {
   return (
     <AllContextProvider>
@@ -51,6 +52,7 @@ function App() {
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<Signup />} />
       </Routes>
+      <Toasts />
     </BrowserRouter>
     </AllContextProvider>
   );

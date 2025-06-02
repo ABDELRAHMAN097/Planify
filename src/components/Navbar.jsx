@@ -1,42 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { FaHome, FaMoon, FaSun, FaTrello } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
-import { AllContext } from "../context/AllContext.jsx";
+import { AllContext } from "../context/AllContext";
 
 const Navbar = () => {
-  // dark mode
-  const { darkMode, toggleDarkMode } = useContext(AllContext);
+  const { darkMode, toggleDarkMode, user, logout } = useContext(AllContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
-  // دالة لتحميل حالة المستخدم
-  const loadUser = () => {
-    const storedUser = localStorage.getItem("user");
-    setUser(storedUser ? JSON.parse(storedUser) : null);
-  };
-
-  useEffect(() => {
-    // تحميل المستخدم عند التحميل الأولي
-    loadUser();
-
-    // إضافة مستمع لتغيرات localStorage
-    window.addEventListener("storage", loadUser);
-
-    return () => {
-      window.removeEventListener("storage", loadUser);
-    };
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-    window.location.reload(); // إعادة تحميل الصفحة فورًا
-  };
-
-  const isAdmin = user?.isAdmin === true;
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -63,29 +35,34 @@ const Navbar = () => {
                 Team
               </Link>
 
-              {isAdmin && (
+              {user && (
+
                 <Link
-                  to="/dashboard"
-                  className="text-gray-700 hover:text-purple-600"
+                to="/dashboard"
+                className="text-gray-700 hover:text-purple-600 dark:text-white"
                 >
                   Dashboard
                 </Link>
-              )}
+                )}
+              
 
               {user ? (
+
                 <button
-                  className="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600"
-                  onClick={handleLogout}
+                className="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600"
+                onClick={logout}
                 >
                   <LogoutButton />
                 </button>
               ) : (
-                <Link to="/signup">
+              <Link to="/signup">
                   <button className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
                     Getting started
                   </button>
                 </Link>
-              )}
+              
+            )}
+
               <button onClick={toggleDarkMode}>
                 {darkMode ? (
                   <FaSun className="text-xl text-yellow-400" />
@@ -105,7 +82,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {isMenuOpen && (
+        
           <div className="md:hidden bg-white border-t">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link to="/" className="block px-3 py-2 text-gray-700">
@@ -115,29 +92,29 @@ const Navbar = () => {
                 Team
               </Link>
 
-              {isAdmin && (
+              
                 <Link to="/dashboard" className="block px-3 py-2 text-gray-700">
                   Dashboard
                 </Link>
-              )}
+            
 
-              {user ? (
+              
                 <button
                   className="w-full bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600"
-                  onClick={handleLogout}
+                  onClick={logout}
                 >
                   <LogoutButton />
                 </button>
-              ) : (
-                <Link to="/Signup">
+             
+                <Link to="/signup">
                   <button className="w-full bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
                     Getting started
                   </button>
                 </Link>
-              )}
+              
             </div>
           </div>
-        )}
+        
       </nav>
     </div>
   );

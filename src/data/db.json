@@ -30,14 +30,14 @@
       "status": "completed",
       "team": [
         1745670605525,
-        1745757575847,
         1745758038458,
-        1745675999943
+        1745675999943,
+        1745678077606
       ],
       "tasks": [
         {
           "id": 1746024728107,
-          "title": "task 2",
+          "title": "taskKKKKKKKKKKK",
           "status": "Completed",
           "assignedTo": 1745757575847
         }
@@ -54,8 +54,7 @@
       "team": [
         1745787202433,
         1745678206234,
-        1745675999943,
-        1745757575847
+        1745675999943
       ],
       "tasks": [
         {
@@ -79,27 +78,6 @@
       ],
       "id": 1746287104787,
       "createdAt": "2025-05-03T15:45:04.787Z"
-    },
-    {
-      "name": "الضحك",
-      "description": "ي",
-      "startDate": "2025-05-04",
-      "endDate": "2025-05-29",
-      "status": "completed",
-      "team": [
-        1745757575847,
-        1745670605525
-      ],
-      "tasks": [
-        {
-          "id": 1746367364373,
-          "title": "سي",
-          "status": "In Progress",
-          "assignedTo": 1745757575847
-        }
-      ],
-      "id": 1746367398566,
-      "createdAt": "2025-05-04T14:03:18.566Z"
     }
   ],
   "tasks": [],
@@ -153,7 +131,7 @@
         "JavaScript"
       ],
       "isAdmin": false,
-      "isLead": true
+      "isLead": false
     },
     {
       "id": 1745678206234,
@@ -290,6 +268,121 @@
         "CSS",
         "Python",
         "Next.js"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748793852708,
+      "name": "Paula Page",
+      "role": "Tempore quam eaque ",
+      "email": "ciwulynefe@mailinator.com",
+      "phone": "01094245230",
+      "skills": [
+        "Node.js",
+        "CSS",
+        "Python",
+        "Next.js"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748793926582,
+      "name": "Maile Le",
+      "role": "Odio totam molestias",
+      "email": "rodypovine@mailinator.com",
+      "phone": "01053796616",
+      "skills": [
+        "React",
+        "Node.js",
+        "Dolorem numquam vel"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748803595534,
+      "name": "Naida Patel",
+      "role": "Eiusmod accusamus co",
+      "email": "jibuhebo@mailinator.com",
+      "phone": "01068466635",
+      "skills": [
+        "Doloremque quia faci"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748803660304,
+      "name": "David Hancock",
+      "role": "Unde dignissimos sim",
+      "email": "xipi@mailinator.com",
+      "phone": "01028787778",
+      "skills": [
+        "Consequatur Obcaeca",
+        "Next.js",
+        "Node.js",
+        "CSS"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748805719562,
+      "name": "Illiana Edwards",
+      "role": "Voluptate quaerat bl",
+      "email": "mawocynac@mailinator.com",
+      "phone": "01263337993",
+      "skills": [
+        "Non soluta duis aut",
+        "HTML",
+        "CSS",
+        "Node.js",
+        "Next.js"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748805910092,
+      "name": "Caleb Wood",
+      "role": "Error rerum dolores ",
+      "email": "zujep@mailinator.com",
+      "phone": "01194171315",
+      "skills": [
+        "Placeat dolorem ex",
+        "HTML"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748806019571,
+      "name": "Uma Roach",
+      "role": "Vel qui aspernatur i",
+      "email": "razenem@mailinator.com",
+      "phone": "01270718366",
+      "skills": [
+        "Next.js",
+        "CSS",
+        "HTML",
+        "React",
+        "Django",
+        "Laborum Quia minim"
+      ],
+      "isAdmin": false,
+      "isLead": false
+    },
+    {
+      "id": 1748807358546,
+      "name": "Orla Holman",
+      "role": "Maxime corrupti ill",
+      "email": "sope@mailinator.com",
+      "phone": "01569361271",
+      "skills": [
+        "Next.js",
+        "Django"
       ],
       "isAdmin": false,
       "isLead": false
